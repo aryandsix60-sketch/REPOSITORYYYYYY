@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://dobrwyjk3g6w7"]
+
+[ext_resource type="Script" uid="uid://cu4oo36tf2ryb" path="res://scripts/wizard.gd" id="1_l5p6t"]
+[ext_resource type="Texture2D" uid="uid://dii3bi3pvni4k" path="res://assets/enemies/wizard/run/2_enemies_1_run_000.png" id="1_xnqjn"]
+[ext_resource type="Texture2D" uid="uid://cx5qau4pq8ta1" path="res://assets/enemies/wizard/run/2_enemies_1_run_001.png" id="2_xcxhb"]
+[ext_resource type="Texture2D" uid="uid://qmaco8up4qcs" path="res://assets/enemies/wizard/run/2_enemies_1_run_002.png" id="3_la5vo"]
+[ext_resource type="Texture2D" uid="uid://by1ef6bykav8n" path="res://assets/enemies/wizard/run/2_enemies_1_run_003.png" id="4_4muko"]
+[ext_resource type="Texture2D" uid="uid://d4dkmrikmq45h" path="res://assets/enemies/wizard/run/2_enemies_1_run_004.png" id="5_camet"]
+[ext_resource type="Texture2D" uid="uid://bdsl3uw47j67m" path="res://assets/enemies/wizard/run/2_enemies_1_run_005.png" id="6_4yrku"]
+[ext_resource type="Texture2D" uid="uid://0mrioeepru46" path="res://assets/enemies/wizard/run/2_enemies_1_run_006.png" id="7_05tbc"]
+[ext_resource type="Texture2D" uid="uid://c1dj5t4r65rsx" path="res://assets/enemies/wizard/run/2_enemies_1_run_007.png" id="8_uxciu"]
+[ext_resource type="Texture2D" uid="uid://cmr0tvedb7g7m" path="res://assets/enemies/wizard/run/2_enemies_1_run_008.png" id="9_165cv"]
+[ext_resource type="Texture2D" uid="uid://da0y4rkkxsytt" path="res://assets/enemies/wizard/run/2_enemies_1_run_009.png" id="10_jfbqg"]
+[ext_resource type="Texture2D" uid="uid://83wv674g5uag" path="res://assets/enemies/wizard/run/2_enemies_1_run_010.png" id="11_o4oej"]
+[ext_resource type="Texture2D" uid="uid://10o27t2o53ux" path="res://assets/enemies/wizard/run/2_enemies_1_run_011.png" id="12_7rb1p"]
+[ext_resource type="Texture2D" uid="uid://cn5qbdpwasrrc" path="res://assets/enemies/wizard/run/2_enemies_1_run_012.png" id="13_jq2g1"]
+[ext_resource type="Texture2D" uid="uid://v8pututcgcdq" path="res://assets/enemies/wizard/run/2_enemies_1_run_013.png" id="14_r8ldh"]
+[ext_resource type="Texture2D" uid="uid://bc08cyidla555" path="res://assets/enemies/wizard/run/2_enemies_1_run_014.png" id="15_r8sfb"]
+[ext_resource type="Texture2D" uid="uid://b0h0iop4wdeho" path="res://assets/enemies/wizard/run/2_enemies_1_run_015.png" id="16_15ykp"]
+[ext_resource type="Texture2D" uid="uid://disu83ngcro4x" path="res://assets/enemies/wizard/run/2_enemies_1_run_016.png" id="17_jml44"]
+[ext_resource type="Texture2D" uid="uid://dnes50nipw8ls" path="res://assets/enemies/wizard/run/2_enemies_1_run_017.png" id="18_pk22g"]
+[ext_resource type="Texture2D" uid="uid://dlsdw0tg5p20k" path="res://assets/enemies/wizard/run/2_enemies_1_run_018.png" id="19_g70ix"]
+[ext_resource type="Texture2D" uid="uid://boe5a4kjv5eop" path="res://assets/enemies/wizard/run/2_enemies_1_run_019.png" id="20_w0xdw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6f53g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xnqjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xcxhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_la5vo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4muko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_camet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4yrku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_05tbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_uxciu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_165cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jfbqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_o4oej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7rb1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jq2g1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_r8ldh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r8sfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_15ykp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_jml44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_pk22g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g70ix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_w0xdw")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a3hw"]
+size = Vector2(95, 192)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5p6t"]
+bg_color = Color(1.1065607, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ank6q"]
+bg_color = Color(0, 1, 0.19607843, 1)
+
+[node name="PathFollow2D" type="PathFollow2D" unique_id=524683475 node_paths=PackedStringArray("health_ui") groups=["enemy"]]
+rotates = false
+script = ExtResource("1_l5p6t")
+health_ui = NodePath("ProgressBar")
+
+[node name="pivot" type="Node2D" parent="." unique_id=1490238264]
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pivot" unique_id=352851447 groups=["enemy"]]
+position = Vector2(72, 4)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_6f53g")
+animation = &"run"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1609218684 groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=628800447 groups=["enemy"]]
+position = Vector2(15.25, 4)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_3a3hw")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=173809983]
+offset_left = -44.0
+offset_top = -58.0
+offset_right = 63.0
+offset_bottom = -41.0
+theme_override_styles/background = SubResource("StyleBoxFlat_l5p6t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ank6q")
+max_value = 10.0
+value = 5.0
+show_percentage = false

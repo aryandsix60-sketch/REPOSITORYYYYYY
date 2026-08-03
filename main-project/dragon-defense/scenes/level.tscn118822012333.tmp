@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://cktteyh6m7qk3"]
+
+[ext_resource type="PackedScene" uid="uid://oy07qqh8hrww" path="res://scenes/player.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://b5fpnt04opaor" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://dobrwyjk3g6w7" path="res://scenes/wizard.tscn" id="3_klq6b"]
+[ext_resource type="PackedScene" uid="uid://bl2bfevcliklf" path="res://scenes/scorpion.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://bnivswj0vm1d5" path="res://scenes/ogre.tscn" id="4_b121j"]
+[ext_resource type="PackedScene" uid="uid://coc2ejbarpnip" path="res://scenes/robot.tscn" id="5_8c41q"]
+[ext_resource type="PackedScene" uid="uid://cvp28wy3n7bef" path="res://scenes/ogre_tank.tscn" id="6_olg7q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u52ul"]
+size = Vector2(1055, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vonw3"]
+size = Vector2(92.125, 261.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
+size = Vector2(17.5, 709)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b4ue"]
+size = Vector2(1574.875, 58.5)
+
+[sub_resource type="Curve2D" id="Curve2D_2q6dc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -58, 152, 0, 0, 0, 0, 70, 127, 0, 0, 0, 0, 1028, 113, 0, 0, 0, 0, 1012, 513, 0, 0, 0, 0, 483, 485, 0, 0, 0, 0, -79, 485)
+}
+point_count = 6
+
+[node name="Node2D" type="Node2D" unique_id=898089102]
+script = ExtResource("1_w7c3h")
+scorpion_scene = ExtResource("3_w8frs")
+wizard_scene = ExtResource("3_klq6b")
+ogre_scene = ExtResource("4_b121j")
+robot_scene = ExtResource("5_8c41q")
+ogre_tank_scene = ExtResource("6_olg7q")
+scenes = {}
+
+[node name="path_area" type="Area2D" parent="." unique_id=1559765250 groups=["no_tower_placement"]]
+
+[node name="ColorRect" type="ColorRect" parent="path_area" unique_id=886640659]
+offset_right = 1153.0
+offset_bottom = 651.0
+color = Color(0, 0.3372549, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="path_area" unique_id=1806562646]
+offset_top = 95.0
+offset_right = 1055.0
+offset_bottom = 193.0
+color = Color(0.9999997, 0.8689137, 0.54034996, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="path_area" unique_id=1450551949]
+offset_top = 455.0
+offset_right = 1055.0
+offset_bottom = 553.0
+color = Color(0.9999997, 0.8689137, 0.54034996, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="path_area" unique_id=504474085]
+offset_left = 963.0
+offset_top = 189.0
+offset_right = 1055.0
+offset_bottom = 504.0
+color = Color(0.9999997, 0.8689137, 0.54034996, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="path_area" unique_id=219283619]
+position = Vector2(527.5, 144)
+shape = SubResource("RectangleShape2D_u52ul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="path_area" unique_id=1692397998]
+position = Vector2(527.5, 504)
+shape = SubResource("RectangleShape2D_u52ul")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="path_area" unique_id=534094613]
+position = Vector2(1009, 324)
+shape = SubResource("RectangleShape2D_vonw3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=103030256]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1159090051]
+position = Vector2(-8.75, 327.5)
+shape = SubResource("RectangleShape2D_oi3di")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=490892153]
+position = Vector2(570.5625, -29)
+shape = SubResource("RectangleShape2D_0b4ue")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1464504106]
+position = Vector2(1162, 319)
+shape = SubResource("RectangleShape2D_oi3di")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=646257186]
+position = Vector2(515, 678)
+shape = SubResource("RectangleShape2D_0b4ue")
+
+[node name="CharacterBody2D2" parent="." unique_id=2038216385 instance=ExtResource("1_2q6dc")]
+position = Vector2(161, 330)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1983818573]
+position = Vector2(0, -3)
+curve = SubResource("Curve2D_2q6dc")
+
+[node name="Timer" type="Timer" parent="." unique_id=1200194915]
+
+[node name="spawner" type="Marker2D" parent="." unique_id=429172031]
+position = Vector2(-59, 149)
+
+[connection signal="timeout" from="Timer" to="." method="_start_wave"]

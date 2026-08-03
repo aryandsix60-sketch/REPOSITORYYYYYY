@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dbgwpwqabeel5"]
+
+[ext_resource type="Script" uid="uid://k2pkuiy47eil" path="res://scripts/bullet.gd" id="1_mkf8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1aey"]
+size = Vector2(19.5, 18)
+
+[node name="Area2D" type="Area2D" unique_id=184131748]
+script = ExtResource("1_mkf8s")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1668910593]
+offset_left = -10.0
+offset_top = -9.0
+offset_right = 10.0
+offset_bottom = 9.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=728881250]
+polygon = PackedVector2Array(10, -9, 23, 0, 10, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=994844698]
+visible = false
+position = Vector2(0.25, 0)
+shape = SubResource("RectangleShape2D_h1aey")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1866486710]
+polygon = PackedVector2Array(10, -9, 10, 9, 23, 0)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1199804890]
+color = Color(1, 0.5372549, 0, 1)
+polygon = PackedVector2Array(-10, -9, -28, 0, -10, 9)
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=618182591]
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(-10, -7, -24, 0, -10, 6)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

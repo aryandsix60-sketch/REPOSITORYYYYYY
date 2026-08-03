@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cp2ncasu5if4i"]
+
+[ext_resource type="Texture2D" uid="uid://ce06pa3di25qm" path="res://assets/circles/images__1_-removebg-preview.png" id="1_oynpq"]
+[ext_resource type="Script" uid="uid://cmc3fjwkqo1ba" path="res://scripts/tower_checker.gd" id="1_vtehq"]
+[ext_resource type="Texture2D" uid="uid://oqpyhh6pq4p7" path="res://assets/circles/images__3_-removebg-preview.png" id="2_vtehq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ttma"]
+radius = 59.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bq320"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oynpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vtehq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=1121794377]
+script = ExtResource("1_vtehq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689425747]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_0ttma")
+
+[node name="circle" type="AnimatedSprite2D" parent="." unique_id=830599580]
+modulate = Color(1, 1, 1, 0.43137255)
+rotation = 3.1415927
+scale = Vector2(0.58, -0.58)
+sprite_frames = SubResource("SpriteFrames_bq320")
+frame = 1
+frame_progress = 1.0
+
+[connection signal="area_entered" from="." to="." method="_disallowed_area_entered"]
+[connection signal="area_exited" from="." to="." method="_disallowed_area_exited"]

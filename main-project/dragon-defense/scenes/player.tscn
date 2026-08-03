@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://oy07qqh8hrww"]
+
+[ext_resource type="Script" uid="uid://uusq2hioncbh" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://dbgwpwqabeel5" path="res://scenes/bullet.tscn" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://dfld6hpp7u55q" path="res://assets/player/helicopter_body.png" id="3_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://bod7vh4gqtx4i" path="res://assets/player/main_rotor.png" id="4_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://ixsqpyftnh73" path="res://assets/player/back_rotor.png" id="5_fjrip"]
+
+[sub_resource type="Resource" id="Resource_qhqgy"]
+metadata/__load_path__ = "res://scenes/muzzleflash.tscn"
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2038216385 node_paths=PackedStringArray("player", "pivot", "bullet_spawn", "flash_spawn", "timer", "multi_time") groups=["player"]]
+scale = Vector2(2.1999993, 2.320001)
+script = ExtResource("1_3vyb7")
+player = NodePath(".")
+pivot = NodePath("Node2D")
+bullet_spawn = NodePath("Node2D/Marker2D")
+flash_scene = SubResource("Resource_qhqgy")
+flash_spawn = NodePath("Node2D/Marker2D")
+timer = NodePath("Timer")
+multi_time = NodePath("Timer2")
+bullet_scene = ExtResource("2_g2els")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=554524513]
+scale = Vector2(1, 0.99999994)
+
+[node name="Marker2D" type="Marker2D" parent="Node2D" unique_id=108348485]
+position = Vector2(38.636375, -3.5527137e-15)
+
+[node name="Timer" type="Timer" parent="." unique_id=661841047]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="." unique_id=233980562]
+wait_time = 5.0
+one_shot = true
+
+[node name="HelicopterBody" type="Sprite2D" parent="." unique_id=982087874]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_qlg0r")
+
+[node name="back_rotor_pos" type="Marker2D" parent="HelicopterBody" unique_id=181338011]
+position = Vector2(-27, 0)
+scale = Vector2(1.5, 1.5)
+
+[node name="MainRotor" type="Sprite2D" parent="." unique_id=1500925271]
+position = Vector2(0, -2.3841856e-07)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_tuyoq")
+
+[node name="BackRotor" type="Sprite2D" parent="." unique_id=2136916011]
+position = Vector2(-40.45456, 5.9604645e-08)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_fjrip")
+
+[connection signal="timeout" from="Timer" to="." method="_reload_time"]
+[connection signal="timeout" from="Timer2" to="." method="_multi_expire"]

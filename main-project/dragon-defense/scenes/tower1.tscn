@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://2dqrrdprsbyr"]
+
+[ext_resource type="Script" uid="uid://dv1aqygxhgh37" path="res://scripts/tower.gd" id="1_dog3o"]
+[ext_resource type="Texture2D" uid="uid://civrjlbyg0cvb" path="res://assets/towers/towerDefense_tile250.png" id="2_dog3o"]
+[ext_resource type="PackedScene" uid="uid://dbgwpwqabeel5" path="res://scenes/bullet.tscn" id="2_p6asc"]
+[ext_resource type="Texture2D" uid="uid://oqpyhh6pq4p7" path="res://assets/circles/images__3_-removebg-preview.png" id="3_yekfl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ttma"]
+radius = 59.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dog3o"]
+radius = 349.00143
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6asc"]
+radius = 58.21512
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "right_bullet_spawn", "left_bullet_spawn")]
+script = ExtResource("1_dog3o")
+pivot = NodePath("Node2D")
+bullet_scene = ExtResource("2_p6asc")
+right_bullet_spawn = NodePath("Node2D/right")
+left_bullet_spawn = NodePath("Node2D/left")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689425747]
+shape = SubResource("CircleShape2D_0ttma")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=111008117]
+position = Vector2(12.999999, 0.5500064)
+rotation = 1.5707964
+scale = Vector2(1, 1.0085938)
+texture = ExtResource("2_dog3o")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=415704407]
+z_index = -1
+position = Vector2(-1, 0)
+rotation = -3.1415925
+scale = Vector2(0.59752065, 0.6048667)
+texture = ExtResource("3_yekfl")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=415163063]
+
+[node name="left" type="Marker2D" parent="Node2D" unique_id=1607509325]
+position = Vector2(70, -12)
+
+[node name="right" type="Marker2D" parent="Node2D" unique_id=1684713610]
+position = Vector2(70, 14)
+
+[node name="range" type="Area2D" parent="." unique_id=1656787315]
+
+[node name="range1" type="CollisionShape2D" parent="range" unique_id=984350190]
+shape = SubResource("CircleShape2D_dog3o")
+
+[node name="right_reload" type="Timer" parent="." unique_id=1794887784]
+wait_time = 0.5
+one_shot = true
+
+[node name="left_reload" type="Timer" parent="." unique_id=735596015]
+wait_time = 0.5
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1283062187 groups=["no_tower_placement"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=296184564 groups=["no_tower_placement"]]
+shape = SubResource("CircleShape2D_p6asc")
+
+[connection signal="body_entered" from="range" to="." method="_enemy_in_range"]
+[connection signal="body_exited" from="range" to="." method="_enemy_out_range"]
+[connection signal="timeout" from="right_reload" to="." method="_right_reloaded"]
+[connection signal="timeout" from="left_reload" to="." method="left_reloaded"]
