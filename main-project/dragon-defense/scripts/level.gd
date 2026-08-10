@@ -30,25 +30,25 @@ var waves = {
 		"ogre_tank" : [0,0,0,1]
 		},
 	"2": {
-		"scorpion" : 15,
-		"wizard": 1,
-		"ogre" : 1,
-		"robot" : 0,
-		"ogre_tank" : 0
+		"scorpion" : [5,4,4,4],
+		"wizard": [1,1,1,1],
+		"ogre" : [3,3,3,3],
+		"robot" : [1,1,1,1],
+		"ogre_tank" : [0,1,1,2]
 		},
 	"3": {
-		"scorpion" : 20,
-		"wizard": 2,
-		"ogre" : 0,
-		"robot" : 1,
-		"ogre_tank" : 0
+		"scorpion" : [5,4,4,4],
+		"wizard": [1,1,1,1],
+		"ogre" : [3,3,3,3],
+		"robot" : [1,1,1,1],
+		"ogre_tank" : [0,1,1,2]
 		},
 	"4": {
-		"scorpion" : 30,
-		"wizard": 1,
-		"ogre" : 0,
-		"robot" : 0,
-		"ogre_tank" : 0
+		"scorpion" : [5,4,4,4],
+		"wizard": [1,1,1,1],
+		"ogre" : [3,3,3,3],
+		"robot" : [1,1,1,1],
+		"ogre_tank" : [0,1,1,2]
 		},
 	
 		}
@@ -80,14 +80,10 @@ func _start_wave() -> void:
 	for sub_wave in range(max_sub_wave):
 		for enemy in wave:
 			var amount = wave[enemy][sub_wave]
-
 			for i in range(amount):
-				
 				var enemy_name = str(enemy + "s")
-
 				enemy_number += 1
 				scene_enemies[enemy_name].append(enemy + str((enemy_number)))
-
 				
 				var enemies = scenes[enemy].instantiate()
 				enemies.enemy_no = enemy_number

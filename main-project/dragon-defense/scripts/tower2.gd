@@ -3,8 +3,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 @export var right_bullet_spawn: Marker2D
 @export var left_bullet_spawn: Marker2D
-var left_can_shoot = true
-var right_can_shoot = true
+var can_shoot = true
 var target_enemy
 var enemy_number
 var possible_target
@@ -15,7 +14,8 @@ var level = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	await get_tree().create_timer(0.5).timeout
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,10 +28,8 @@ func _process(delta: float) -> void:
 			target_enemy = targetable_enemies[target_enemy_no]
 			var target_angle = global_position.angle_to_point(target_enemy.global_position)
 			rotation = rotate_toward(rotation, target_angle, 3.0 * delta)
-			if right_can_shoot:
-				right_shoot()
-			if left_can_shoot:
-				left_shoot()
+			if can_shoot:
+				shoot()
 				
 		
 		
@@ -51,21 +49,15 @@ func _enemy_out_range(body: Node2D) -> void:
 
 
 	
-func right_shoot() -> void:
-		var bullet = bullet_scene.instantiate()
-		bullet.global_position = right_bullet_spawn.global_position
-		bullet.rotation = rotation
-		add_sibling(bullet)
-		right_can_shoot = false
-		$right_reload.start()
+
 		
-func left_shoot() -> void:
+func shoot() -> void:
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = left_bullet_spawn.global_position
 		bullet.rotation = rotation
 		add_sibling(bullet)
-		left_can_shoot = false
-		$left_reload.start()
+		can_shoot = false
+		$reload.start()
 		
 
 
@@ -73,9 +65,6 @@ func left_shoot() -> void:
 
 
 
-func _right_reloaded() -> void:
-	right_can_shoot = true
 
-
-func left_reloaded() -> void:
-	left_can_shoot = true
+func _reloaded() -> void:
+	can_shoot = true

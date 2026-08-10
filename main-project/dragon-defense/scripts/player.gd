@@ -18,10 +18,13 @@ var multi_shoot: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Engine.time_scale = 1
+	z_index = 20
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	$BackRotor.global_position = $HelicopterBody/back_rotor_pos.global_position
 	$MainRotor.rotation += (20*delta)
 	$BackRotor.rotation += (20*delta)
