@@ -24,7 +24,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	$BackRotor.global_position = $HelicopterBody/back_rotor_pos.global_position
 	$MainRotor.rotation += (20*delta)
 	$BackRotor.rotation += (20*delta)
