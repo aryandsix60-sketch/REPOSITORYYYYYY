@@ -1,17 +1,20 @@
 extends CharacterBody2D
-@export var player = CharacterBody2D
+
 var health = int(3)
 var can_shoot: bool = true
 var score = int(0)
 var direction: Vector2 = Vector2(0.0, 0.0)
 var speed = float(300)
+var level 
+var multi_shoot: bool = false
+
+
 @export var pivot: Node2D
 @export var bullet_spawn: Marker2D
 @export var flash_scene: PackedScene
 @export var flash_spawn: Marker2D
 @export var timer: Timer
-var level 
-var multi_shoot: bool = false
+@export var player = CharacterBody2D
 @export var multi_time: Timer
 @export var bullet_scene: PackedScene
 
@@ -20,7 +23,7 @@ var multi_shoot: bool = false
 func _ready() -> void:
 	Engine.time_scale = 1
 	z_index = 20
-	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

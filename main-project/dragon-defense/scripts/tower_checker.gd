@@ -18,6 +18,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("change_tower") and global.tower_placer_active:
+		pass
+		
 
 	if global.tower_placer_active == false:
 		queue_free()
@@ -25,10 +28,13 @@ func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position()
 	#TOWER PLACEMENT
 	if place_ready:
-		if Input.is_action_just_pressed("place_tower") and global.tower_creation_possible and global.tower_placer_active:
+		if Input.is_action_just_pressed("place_tower") and global.tower_creation_possible \
+		 and global.tower_placer_active and global.coins > 0:
+
+			global.coins -= 10
 			global.tower_creation_possible = false
 			global.tower_placer_active = false
-			global.place_tower_2()
+			global.place_tower_1()
 			queue_free()
 		if blocked_areas >= 1:
 			$circle.frame = 1

@@ -1,5 +1,12 @@
 extends Node2D
-@export var spawner: Marker2D
+
+const PLURALIZER: String = "s"
+const WAVE_TIMER: float = 0.5
+
+
+
+var current_wave
+
 var scene_enemies = {
 	"scorpions" : [],
 	"wizards" : [],
@@ -7,20 +14,13 @@ var scene_enemies = {
 	"ogres" : [],
 	"ogre_tanks" : []
 }
-
-
-
-var current_wave
-
 var scenes = {
 	"scorpion" : preload("res://scenes/scorpion.tscn"),
 	"wizard" : preload("res://scenes/wizard.tscn"),
 	"ogre" : preload("res://scenes/ogre.tscn"),
 	"robot" : preload("res://scenes/robot.tscn"),
 	"ogre_tank" : preload("res://scenes/ogre_tank.tscn")
-
-	}
-
+}
 var waves = {
 	"1": {
 		"scorpion" : [5,0,3,1],
@@ -50,25 +50,22 @@ var waves = {
 		"robot" : [1,1,1,1],
 		"ogre_tank" : [0,1,1,2]
 		},
-	
-		}
+}
 
-
-
-
+@export var coin_label: Label
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	global.in_game = true
 
 	_start_wave()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	coin_label.text = str(global.coins)
 		
 func _start_wave() -> void:
 	var enemy_number = scene_enemies["scorpions"].size()
@@ -81,7 +78,7 @@ func _start_wave() -> void:
 		for enemy in wave:
 			var amount = wave[enemy][sub_wave]
 			for i in range(amount):
-				var enemy_name = str(enemy + "s")
+				var enemy_name = str(enemy + PLURALIZER)
 				enemy_number += 1
 				scene_enemies[enemy_name].append(enemy + str((enemy_number)))
 				
@@ -90,9 +87,9 @@ func _start_wave() -> void:
 				enemies.global_position = $spawner.global_position
 				$Path2D.add_child(enemies)
 
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(WAVE_TIMER).timeout
 
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(WAVE_TIMER).timeout
 
 
 				

@@ -1,33 +1,42 @@
 extends PathFollow2D
-var speed = 300
-var health = 50
-@export var health_ui : ProgressBar
+const SPEED: float = 300.0
+const MAX_PROGRESS: float = 2530
+const SCALE_LEFT: int = 1
+const SCALE_RIGHT: int = -1
+const START_PROGRESS: int = 0
+
+var health = 5
 var enemy_no
+var damage = 1
+
+
+
+@export var health_ui : ProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health_ui.max_value = health
 	health_ui.value = health
-	progress_ratio = 0
-	$pivot.scale.x = 1
+	progress_ratio = START_PROGRESS
+	$pivot.scale.x = SCALE_LEFT
 
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	progress += speed*delta
-	if progress > 2530:
+	progress += SPEED * delta
+	if progress > MAX_PROGRESS:
 		queue_free()
 	$pivot/AnimatedSprite2D.play("run")
 	
 		
 func rotate_enemy() -> void:
-	$pivot.scale.x = -1
+	$pivot.scale.x = SCALE_RIGHT
 	
 func take_damage() -> void:
 	if health > 0:
-		health -=1
+		health -= damage
 		health_ui.value = health
 		
 	if health == 0:

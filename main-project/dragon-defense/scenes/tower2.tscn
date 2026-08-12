@@ -14,11 +14,10 @@ radius = 349.00143
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6asc"]
 radius = 58.21512
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "right_bullet_spawn", "left_bullet_spawn")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "left_bullet_spawn")]
 script = ExtResource("1_31gj7")
 pivot = NodePath("Node2D")
 bullet_scene = ExtResource("2_joa76")
-right_bullet_spawn = NodePath("")
 left_bullet_spawn = NodePath("Node2D/shoot")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689425747]

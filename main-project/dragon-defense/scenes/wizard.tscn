@@ -91,7 +91,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a3hw"]
-size = Vector2(95, 192)
+size = Vector2(116, 214)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5p6t"]
 bg_color = Color(1.1065607, 0, 0, 1)
@@ -105,26 +105,25 @@ script = ExtResource("1_l5p6t")
 health_ui = NodePath("ProgressBar")
 
 [node name="pivot" type="Node2D" parent="." unique_id=1490238264]
-scale = Vector2(0.5, 0.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pivot" unique_id=352851447 groups=["enemy"]]
-position = Vector2(72, 4)
-scale = Vector2(0.7, 0.7)
+position = Vector2(27.000004, -2.9999995)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_6f53g")
 animation = &"run"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1609218684 groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=628800447 groups=["enemy"]]
-position = Vector2(15.25, 4)
+position = Vector2(6, 0.5)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_3a3hw")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=173809983]
-offset_left = -44.0
-offset_top = -58.0
-offset_right = 63.0
-offset_bottom = -41.0
+offset_left = -55.0
+offset_top = -78.0
+offset_right = 52.0
+offset_bottom = -61.0
 theme_override_styles/background = SubResource("StyleBoxFlat_l5p6t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ank6q")
 max_value = 10.0
