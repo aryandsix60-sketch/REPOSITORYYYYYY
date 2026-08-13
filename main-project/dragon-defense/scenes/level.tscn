@@ -121,10 +121,10 @@ shape = SubResource("RectangleShape2D_w8frs")
 position = Vector2(161, 330)
 
 [node name="Coins" type="Label" parent="." unique_id=712701949]
-offset_left = 1078.0
-offset_top = 580.0
-offset_right = 1158.0
-offset_bottom = 676.0
+offset_left = 1076.0
+offset_top = 567.0
+offset_right = 1156.0
+offset_bottom = 708.0
 theme_override_font_sizes/font_size = 50
 text = "23
 "

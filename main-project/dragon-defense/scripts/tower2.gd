@@ -14,6 +14,7 @@ var level = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rotation = deg_to_rad(-90)
 	await get_tree().create_timer(0.5).timeout
 
 
@@ -52,12 +53,12 @@ func _enemy_out_range(body: Node2D) -> void:
 
 		
 func shoot() -> void:
-		var bullet = bullet_scene.instantiate()
-		bullet.global_position = left_bullet_spawn.global_position
-		bullet.rotation = rotation
-		add_sibling(bullet)
-		can_shoot = false
-		$reload.start()
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = left_bullet_spawn.global_position
+	bullet.rotation = rotation
+	add_sibling(bullet)
+	can_shoot = false
+	$reload.start()
 		
 
 

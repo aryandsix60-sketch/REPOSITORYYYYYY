@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bdqkfpyaive2t" path="res://scripts/tower2.gd" id="1_31gj7"]
 [ext_resource type="Texture2D" uid="uid://bkis5d63ywu6d" path="res://assets/towers/towerDefense_tile249.png" id="2_31gj7"]
 [ext_resource type="PackedScene" uid="uid://dbgwpwqabeel5" path="res://scenes/bullet.tscn" id="2_joa76"]
-[ext_resource type="Texture2D" uid="uid://oqpyhh6pq4p7" path="res://assets/circles/images__3_-removebg-preview.png" id="4_gpd66"]
+[ext_resource type="Texture2D" uid="uid://ce06pa3di25qm" path="res://assets/circles/images__1_-removebg-preview.png" id="4_gra0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ttma"]
 radius = 59.0
@@ -30,11 +30,12 @@ scale = Vector2(1, 1.0085938)
 texture = ExtResource("2_31gj7")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=415704407]
+modulate = Color(0, 1, 1, 1)
 z_index = -1
 position = Vector2(-1, 0)
 rotation = -3.1415925
 scale = Vector2(0.59752065, 0.6048667)
-texture = ExtResource("4_gpd66")
+texture = ExtResource("4_gra0m")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=415163063]
 
