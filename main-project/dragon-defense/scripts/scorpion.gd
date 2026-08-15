@@ -35,12 +35,12 @@ func _process(delta: float) -> void:
 func rotate_enemy() -> void:
 	$pivot.scale.x = SCALE_RIGHT
 	
-func take_damage() -> void:
+func take_damage(damage):
 	if health > 0:
 		health -= damage
 		health_ui.value = health
 		
-	if health == 0:
+	if health < 1:
 		queue_free()
 		
 	

@@ -7,6 +7,9 @@ var direction: Vector2 = Vector2(0.0, 0.0)
 var speed = float(300)
 var level 
 var multi_shoot: bool = false
+var damage = float(1.0)
+
+
 
 
 @export var pivot: Node2D
@@ -70,6 +73,7 @@ func _shoot() -> void:
 		angles = [0]
 	for angle in angles:
 		var bullet = bullet_scene.instantiate()
+		bullet.damage = damage
 		bullet.rotation = pivot.rotation + deg_to_rad(angle)
 		bullet.global_position = bullet_spawn.global_position
 		add_sibling(bullet)

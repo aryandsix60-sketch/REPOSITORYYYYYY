@@ -29,8 +29,8 @@ bullet_scene = ExtResource("2_p6asc")
 right_bullet_spawn = NodePath("Node2D/right")
 left_bullet_spawn = NodePath("Node2D/left")
 tower_menu_scene = ExtResource("3_wv2mt")
-tower_menu_spawn = NodePath("tower_menu_spawn")
-tower_menu_backup_spawn = NodePath("tower_menu_backup_spawn")
+tower_menu_spawn = NodePath("")
+tower_menu_backup_spawn = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689425747]
 shape = SubResource("CircleShape2D_0ttma")
@@ -80,12 +80,6 @@ offset_top = -61.0
 offset_right = 60.0
 offset_bottom = 61.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_p6asc")
-
-[node name="tower_menu_spawn" type="Marker2D" parent="." unique_id=1681280934]
-position = Vector2(0, -185)
-
-[node name="tower_menu_backup_spawn" type="Marker2D" parent="." unique_id=1697312935]
-position = Vector2(0, 116)
 
 [connection signal="input_event" from="." to="." method="_tower_clicked"]
 [connection signal="body_entered" from="range" to="." method="_enemy_in_range"]

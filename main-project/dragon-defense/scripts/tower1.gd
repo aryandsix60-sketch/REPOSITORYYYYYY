@@ -3,6 +3,11 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 @export var right_bullet_spawn: Marker2D
 @export var left_bullet_spawn: Marker2D
+@export var tower_menu_scene: PackedScene
+@export var tower_menu_spawn: Marker2D
+@export var tower_menu_backup_spawn: Marker2D
+
+
 var left_can_shoot = true
 var right_can_shoot = true
 var target_enemy
@@ -12,6 +17,13 @@ var target_enemy_no = 1000
 var targetable_enemies = {}
 var body_detected
 var level = 1
+var damage = float(2.0)
+var damage_level = 1
+var range_level = 1
+var rate_level = 1
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +33,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+		tower_menu_spawn.global_position = global_position + Vector2(0,-300)
 		
 		target_enemy_no = 1000
 		for enemy_number in targetable_enemies:
@@ -55,6 +68,7 @@ func _enemy_out_range(body: Node2D) -> void:
 	
 func right_shoot() -> void:
 		var bullet = bullet_scene.instantiate()
+		bullet.damage = damage
 		bullet.global_position = right_bullet_spawn.global_position
 		bullet.rotation = rotation
 		add_sibling(bullet)
@@ -63,6 +77,7 @@ func right_shoot() -> void:
 		
 func left_shoot() -> void:
 		var bullet = bullet_scene.instantiate()
+		bullet.damage = damage
 		bullet.global_position = left_bullet_spawn.global_position
 		bullet.rotation = rotation
 		add_sibling(bullet)
@@ -81,3 +96,19 @@ func _right_reloaded() -> void:
 
 func left_reloaded() -> void:
 	left_can_shoot = true
+
+
+func _open_tower_menu() -> void:
+	if not global.tower_menu_active:
+		var tower_menu = tower_menu_scene.instantiate()
+		tower_menu.damage_level = damage_level
+		tower_menu.range_level = range_level
+		tower_menu.rate_level = rate_level
+		
+		add_child(tower_menu)
+		
+
+		tower_menu.top_level = true
+		tower_menu.global_position = tower_menu_spawn.global_position
+		global.tower_menu_active = true
+	

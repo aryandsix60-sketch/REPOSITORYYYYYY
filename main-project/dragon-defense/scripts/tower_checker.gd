@@ -2,7 +2,7 @@ extends Area2D
 var blocked_areas = 0
 var place_ready = false
 var tower_choice = 0
-
+var tower_chosen = 0
 
 
 const MAX_TOWER_CHOICE : int  = 1
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	print(tower_choice)
+
 	$tower_shadow.frame = tower_choice
 	if Input.is_action_just_pressed("change_tower") and global.tower_placer_active:
 		if tower_choice == MAX_TOWER_CHOICE:
@@ -50,7 +50,7 @@ func _process(_delta: float) -> void:
 			global.tower_placer_active = false
 			
 			
-			global.place_tower(2)
+			global.place_tower(tower_choice)
 			queue_free()
 		if blocked_areas >= 1:
 			$circle.frame = 1

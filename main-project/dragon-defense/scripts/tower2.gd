@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 @export var right_bullet_spawn: Marker2D
 @export var left_bullet_spawn: Marker2D
+
+
 var can_shoot = true
 var target_enemy
 var enemy_number
@@ -11,6 +13,7 @@ var target_enemy_no = 1000
 var targetable_enemies = {}
 var body_detected
 var level = 1
+var damage = float(1.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,6 +57,7 @@ func _enemy_out_range(body: Node2D) -> void:
 		
 func shoot() -> void:
 	var bullet = bullet_scene.instantiate()
+	bullet.damage = damage
 	bullet.global_position = left_bullet_spawn.global_position
 	bullet.rotation = rotation
 	add_sibling(bullet)

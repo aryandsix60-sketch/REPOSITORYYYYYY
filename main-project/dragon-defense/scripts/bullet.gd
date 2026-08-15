@@ -1,7 +1,8 @@
 extends Area2D
 var speed: float = 1000.0
+var damage
 const BULLET_Z_INDEX: int = 15
-
+ 
 
 
  
@@ -13,8 +14,9 @@ func _process(delta: float) -> void:
 	z_index = BULLET_Z_INDEX
 
 func _on_body_entered(body: Node2D) -> void:
+
 	if body.is_in_group("enemy"):
-		body.get_parent().take_damage()
+		body.get_parent().take_damage(damage)
 		queue_free()
 
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxbhgv746m86v"
-path="res://.godot/imported/Cool Text - HELICOPTER      HAVEN 513499566850881.png-69110245b9677a1fb358ed426eef8f5a.ctex"
+uid="uid://bf87gt4wj3fc1"
+path="res://.godot/imported/black_play_btton.png-023f9f8aaae146680bf4b7d0fd1f9403.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/text/Cool Text - HELICOPTER      HAVEN 513499566850881.png"
-dest_files=["res://.godot/imported/Cool Text - HELICOPTER      HAVEN 513499566850881.png-69110245b9677a1fb358ed426eef8f5a.ctex"]
+source_file="res://assets/menu_assets/black_play_btton.png"
+dest_files=["res://.godot/imported/black_play_btton.png-023f9f8aaae146680bf4b7d0fd1f9403.ctex"]
 
 [params]
 

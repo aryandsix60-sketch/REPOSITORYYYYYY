@@ -15,6 +15,7 @@ radius = 349.00143
 radius = 58.21512
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "left_bullet_spawn")]
+input_pickable = true
 script = ExtResource("1_31gj7")
 pivot = NodePath("Node2D")
 bullet_scene = ExtResource("2_joa76")

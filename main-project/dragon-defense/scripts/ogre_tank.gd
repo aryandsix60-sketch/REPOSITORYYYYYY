@@ -5,7 +5,8 @@ const SCALE_LEFT: int = 1
 const SCALE_RIGHT: int = -1
 const START_PROGRESS: int = 0
 
-var health = 5
+
+var health = 2
 var enemy_no
 var damage = 1
 
@@ -34,12 +35,12 @@ func _process(delta: float) -> void:
 func rotate_enemy() -> void:
 	$pivot.scale.x = SCALE_RIGHT
 	
-func take_damage() -> void:
+func take_damage(damage):
 	if health > 0:
 		health -= damage
 		health_ui.value = health
 		
-	if health == 0:
+	if health < 1:
 		queue_free()
 		
 	
