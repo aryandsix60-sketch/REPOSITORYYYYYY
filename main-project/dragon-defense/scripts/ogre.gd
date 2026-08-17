@@ -8,7 +8,6 @@ const START_PROGRESS: int = 0
 
 var health = 100
 var enemy_no
-var damage = 1
 
 
 
@@ -41,6 +40,8 @@ func take_damage(damage):
 		health_ui.value = health
 		
 	if health < 1:
+		global.coins += 10
 		queue_free()
+		
 		
 	

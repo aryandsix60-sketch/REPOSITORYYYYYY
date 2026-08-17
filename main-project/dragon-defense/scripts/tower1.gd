@@ -11,16 +11,20 @@ extends CharacterBody2D
 var left_can_shoot = true
 var right_can_shoot = true
 var target_enemy
-var enemy_number
+
 var possible_target
 var target_enemy_no = 1000
 var targetable_enemies = {}
 var body_detected
 var level = 1
-var damage = float(2.0)
+
 var damage_level = 1
 var range_level = 1
 var rate_level = 1
+
+var damage
+var range
+var rate
 
 
 
@@ -33,20 +37,27 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-		tower_menu_spawn.global_position = global_position + Vector2(0,-300)
-		
-		target_enemy_no = 1000
-		for enemy_number in targetable_enemies:
-			if enemy_number < target_enemy_no:
-				target_enemy_no = enemy_number
-		if target_enemy_no != 1000:
-			target_enemy = targetable_enemies[target_enemy_no]
-			var target_angle = global_position.angle_to_point(target_enemy.global_position)
-			rotation = rotate_toward(rotation, target_angle, 3.0 * delta)
-			if right_can_shoot:
-				right_shoot()
-			if left_can_shoot:
-				left_shoot()
+	print(damage)
+	damage = damage_level * 1
+	rate = 1/rate_level
+	
+	
+	
+
+	tower_menu_spawn.global_position = global_position + Vector2(0,-300)
+	
+	target_enemy_no = 1000
+	for enemy_number in targetable_enemies:
+		if enemy_number < target_enemy_no:
+			target_enemy_no = enemy_number
+	if target_enemy_no != 1000:
+		target_enemy = targetable_enemies[target_enemy_no]
+		var target_angle = global_position.angle_to_point(target_enemy.global_position)
+		rotation = rotate_toward(rotation, target_angle, 3.0 * delta)
+		if right_can_shoot:
+			right_shoot()
+		if left_can_shoot:
+			left_shoot()
 				
 		
 		
@@ -104,6 +115,7 @@ func _open_tower_menu() -> void:
 		tower_menu.damage_level = damage_level
 		tower_menu.range_level = range_level
 		tower_menu.rate_level = rate_level
+		tower_menu.tower = self
 		
 		add_child(tower_menu)
 		

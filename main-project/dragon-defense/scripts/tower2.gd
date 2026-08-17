@@ -7,13 +7,13 @@ extends CharacterBody2D
 
 var can_shoot = true
 var target_enemy
-var enemy_number
+
 var possible_target
 var target_enemy_no = 1000
 var targetable_enemies = {}
 var body_detected
 var level = 1
-var damage = float(1.0)
+var damage = float(10.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
