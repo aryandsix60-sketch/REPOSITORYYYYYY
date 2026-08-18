@@ -88,14 +88,20 @@ func _start_wave() -> void:
 			var amount = wave[enemy][sub_wave]
 		# Iterates throguh each enemy 
 			for i in range(amount):
+				# If the enemy is an ogre ensure it outputs 
 				if enemy == "ogre":
-					print("BOSS")
+					print("BOSS") #print boss
+# Identifies the enemy name variable and adds an "s" at the end because it needs to match the list 
 				var enemy_name = str(enemy + PLURALIZER)
+# Add one to enemy number because enemy will be insantiated
 				enemy_number += 1
+# Adds the enemy name to the list as well as their number so each enemy can be tracked easily.
 				scene_enemies[enemy_name].append(enemy + str((enemy_number)))
-				
+#creates the var to instantiate the enemy
 				var enemies = scenes[enemy].instantiate()
+#gives the enemy their number
 				enemies.enemy_no = enemy_number
+#gives the enemy it's position to spawn into
 				enemies.global_position = $spawner.global_position
 				$Path2D.add_child(enemies)
 
