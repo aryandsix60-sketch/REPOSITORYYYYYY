@@ -46,8 +46,20 @@ corner_radius_bottom_left = 10
 texture = ExtResource("1_1iuhh")
 modulate_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nmnwy"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gerj"]
 bg_color = Color(0.5521226, 0.4442323, 0.25937024, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1o4kv"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rdtqq"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control" unique_id=2037206481 node_paths=PackedStringArray("damage_level_display", "range_level_display", "rate_level_display")]
 modulate = Color(1, 1, 1, 0.9019608)
@@ -146,6 +158,16 @@ mouse_filter = 2
 theme = SubResource("Theme_nmnwy")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yyksn")
 
+[node name="damage_upgrade_cost" type="Label" parent="Panel/damage/damage_level_up" unique_id=1953089387]
+visible = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 9.0
+offset_right = 42.0
+offset_bottom = 32.0
+text = "$450"
+label_settings = SubResource("LabelSettings_nmnwy")
+
 [node name="damage_description" type="Label" parent="Panel/damage" unique_id=1085329620]
 modulate = Color(1, 1, 1, 0.9019608)
 layout_mode = 0
@@ -171,7 +193,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_yyksn")
 text = "1"
 
-[node name="damage_level_display_text" type="Label" parent="Panel/damage" unique_id=596292419]
+[node name="damage_level_text" type="Label" parent="Panel/damage" unique_id=596292419]
 modulate = Color(1, 1, 1, 0.9019608)
 layout_mode = 0
 offset_left = 86.0
@@ -224,6 +246,15 @@ offset_bottom = 32.0
 mouse_filter = 2
 theme = SubResource("Theme_nmnwy")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yyksn")
+
+[node name="range_upgrade_cost" type="Label" parent="Panel/range/range_level_up" unique_id=1638895302]
+visible = false
+layout_mode = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 32.0
+text = "$450"
+label_settings = SubResource("LabelSettings_1o4kv")
 
 [node name="range_description" type="Label" parent="Panel/range" unique_id=663960821]
 modulate = Color(1, 1, 1, 0.9019608)
@@ -304,6 +335,15 @@ mouse_filter = 2
 theme = SubResource("Theme_nmnwy")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yyksn")
 
+[node name="rate_upgrade_cost" type="Label" parent="Panel/rate/rate_level_up" unique_id=2055163169]
+visible = false
+layout_mode = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 32.0
+text = "$450"
+label_settings = SubResource("LabelSettings_rdtqq")
+
 [node name="rate_description" type="Label" parent="Panel/rate" unique_id=298107993]
 modulate = Color(1, 1, 1, 0.9019608)
 layout_mode = 0
@@ -342,6 +382,12 @@ theme_override_font_sizes/font_size = 8
 text = "LEVEL"
 
 [connection signal="pressed" from="Panel/title/close" to="." method="_on_close_pressed"]
+[connection signal="mouse_entered" from="Panel/damage/damage_level_up" to="." method="_on_damage_level_up_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/damage/damage_level_up" to="." method="_on_damage_level_up_mouse_exited"]
 [connection signal="pressed" from="Panel/damage/damage_level_up" to="." method="_on_damage_level_up_pressed"]
+[connection signal="mouse_entered" from="Panel/range/range_level_up" to="." method="_on_range_level_up_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/range/range_level_up" to="." method="_on_range_level_up_mouse_exited"]
 [connection signal="pressed" from="Panel/range/range_level_up" to="." method="_on_range_level_up_pressed"]
+[connection signal="mouse_entered" from="Panel/rate/rate_level_up" to="." method="_on_rate_level_up_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/rate/rate_level_up" to="." method="_on_rate_level_up_mouse_exited"]
 [connection signal="pressed" from="Panel/rate/rate_level_up" to="." method="_on_rate_level_up_pressed"]

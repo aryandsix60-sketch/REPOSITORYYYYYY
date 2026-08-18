@@ -58,26 +58,38 @@ var waves = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#Lets the game know that we are in the game and out of the menu
 	global.in_game = true
-
+	#Starts the wave
 	_start_wave()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	coin_label.text = str(global.coins)
+# Identifies the coin label text so that the player will always know how many coins they have
+	coin_label.text = "$"+str(global.coins)
 		
+		
+#starts the wave
 func _start_wave() -> void:
+	# Gives enemy number its starting value
 	var enemy_number = scene_enemies["scorpions"].size()
+	# Gets the current wave from the global script
 	current_wave = str(global.wave)
+	# Gives the wave var the sub list for the wave that is currently happening
 	var wave = waves[current_wave]
-
+	# Checks how many subwaves there are, and gives that value to the var, max_sub_wave
 	var max_sub_wave = wave["scorpion"].size()
-
+	# Iterates through each sub wave with the value needed for that sub wave.
 	for sub_wave in range(max_sub_wave):
+	# Iterates through every enemy in that wave
 		for enemy in wave:
+		# Identifies the amount of each enemy is in this sub wave
 			var amount = wave[enemy][sub_wave]
+		# Iterates throguh each enemy 
 			for i in range(amount):
+				if enemy == "ogre":
+					print("BOSS")
 				var enemy_name = str(enemy + PLURALIZER)
 				enemy_number += 1
 				scene_enemies[enemy_name].append(enemy + str((enemy_number)))
