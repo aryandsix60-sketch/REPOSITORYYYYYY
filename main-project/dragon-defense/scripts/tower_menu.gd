@@ -69,6 +69,7 @@ func _on_range_level_up_pressed() -> void:
 		tower.range_level = range_level
 		range_level_display.text = str(range_level)
 		global.coins -= range_level_cost
+		tower.range_level_increased()
 
 
 func _on_rate_level_up_pressed() -> void:

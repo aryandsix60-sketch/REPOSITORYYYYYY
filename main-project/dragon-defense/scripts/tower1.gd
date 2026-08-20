@@ -23,7 +23,7 @@ var range_level = 1
 var rate_level = 1
 
 var damage
-var range
+var range_level_radius = [180,200,250,320,380,420,450,480,540,600]
 var rate
 
 
@@ -31,13 +31,14 @@ var rate
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$range/range1.shape.radius = range_level_radius[range_level - 1]
 
 	rotation = deg_to_rad(-90)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(damage)
+
 	damage = damage_level * 1
 	rate = 1/rate_level
 	
@@ -124,3 +125,5 @@ func _open_tower_menu() -> void:
 		tower_menu.global_position = tower_menu_spawn.global_position
 		global.tower_menu_active = true
 	
+func range_level_increased() -> void:
+	$range/range1.shape.radius = range_level_radius[range_level - 1]
