@@ -18,9 +18,12 @@ var rate_level_cost
 var damage_level_cap = false
 var range_level_cap = false
 var rate_level_cap = false
+ 
+const MENU_Z_INDEX = 500
 
 
 func _ready() -> void:
+	z_index = MENU_Z_INDEX
 	global.coins = 10000
 	
 	damage_level_display.text = str(damage_level)
@@ -37,17 +40,24 @@ func _process(_delta: float) -> void:
 	$Panel/range/range_level_up/range_upgrade_cost.text = "$" + str(int(range_level_cost))
 	$Panel/rate/rate_level_up/rate_upgrade_cost.text = "$" + str(int(rate_level_cost))
 	
-	if damage_level >= 10:
+	if damage_level == 10:
 		damage_level_cap = true
+		$Panel/damage/damage_level_up/damage_upgrade_cost.show()
 		$Panel/damage/damage_level_up/damage_upgrade_cost.text = "MAX"
+		$Panel/damage/damage_level_up/damage_level_up_image.hide()
 	
-	if range_level >= 10:
+	if range_level == 10:
 		range_level_cap = true
 		$Panel/range/range_level_up/range_upgrade_cost.text = " MAX"
-	
-	if rate_level >= 10:
+		$Panel/range/range_level_up/range_level_up_image.hide()
+		$Panel/range/range_level_up/range_upgrade_cost.show()	
+		
+		
+	if rate_level == 10:
 		rate_level_cap = true
 		$Panel/rate/rate_level_up/rate_upgrade_cost.text = " MAX"
+		$Panel/rate/rate_level_up/rate_level_up_image.hide()
+		$Panel/rate/rate_level_up/rate_upgrade_cost.show()
 
 
 func _on_close_pressed() -> void:

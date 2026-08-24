@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 	if target_enemy_no != 1000:
 		target_enemy = targetable_enemies[target_enemy_no]
 		var target_angle = global_position.angle_to_point(target_enemy.global_position)
-		rotation = rotate_toward(rotation, target_angle, 3.0 * delta)
+		rotation = rotate_toward(rotation, target_angle, 10.0 * delta)
 		if right_can_shoot:
 			right_shoot()
 		if left_can_shoot:

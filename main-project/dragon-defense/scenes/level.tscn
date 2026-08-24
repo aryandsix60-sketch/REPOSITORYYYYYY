@@ -17,7 +17,7 @@ size = Vector2(1574.875, 58.5)
 
 [sub_resource type="Curve2D" id="Curve2D_2q6dc"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -58, 152, 0, 0, 0, 0, 70, 127, 0, 0, 0, 0, 1035.0126, 141.00516, 0, 0, 0, 0, 1018, 517, 0, 0, 0, 0, 478.00632, 522.30597, 0, 0, 0, 0, -71.98733, 507.22626)
+"points": PackedVector2Array(0, 0, 0, 0, -58, 152, 0, 0, 0, 0, 70, 127, 0, 0, 0, 0, 1035.0126, 141.00516, 0, 0, 0, 0, 1017.98193, 467.3728, 0, 0, 0, 0, 542.1222, 492.14658, 0, 0, 0, 0, -67.98009, 497.5322)
 }
 point_count = 6
 
@@ -43,9 +43,9 @@ offset_bottom = 214.0
 color = Color(0.9999997, 0.8689137, 0.54034996, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="path_area" unique_id=1450551949]
-offset_top = 455.0
+offset_top = 430.0
 offset_right = 1055.0
-offset_bottom = 553.0
+offset_bottom = 528.0
 color = Color(0.9999997, 0.8689137, 0.54034996, 1)
 
 [node name="ColorRect6" type="ColorRect" parent="path_area" unique_id=504474085]
@@ -60,7 +60,7 @@ position = Vector2(527.5, 166)
 shape = SubResource("RectangleShape2D_u52ul")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="path_area" unique_id=1692397998]
-position = Vector2(527.5, 504)
+position = Vector2(527.5, 479)
 shape = SubResource("RectangleShape2D_u52ul")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="path_area" unique_id=534094613]
@@ -102,7 +102,7 @@ position = Vector2(519, 680)
 shape = SubResource("RectangleShape2D_0b4ue")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1983818573]
-position = Vector2(-0.14273071, 5.0906906)
+position = Vector2(-0.14273071, 5.090691)
 scale = Vector2(0.9981933, 0.92840093)
 curve = SubResource("Curve2D_2q6dc")
 

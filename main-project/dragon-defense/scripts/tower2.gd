@@ -21,7 +21,7 @@ var rate_level = 1
 
 var damage
 var range_level_radius = [180,200,250,320,380,420,450,480,540,600]
-var rate_level_time = [0.7,0.65,0.6,0.55,0.5,0.46,0.42,0.38,0.35,0.32]
+var rate_level_time = [0.4,0.35,0.30,0.25,0.22,0.18,0.16,0.15,0.14,0.12]
 
 
 
@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 		if target_enemy_no != 1000:
 			target_enemy = targetable_enemies[target_enemy_no]
 			var target_angle = global_position.angle_to_point(target_enemy.global_position)
-			rotation = rotate_toward(rotation, target_angle, 5.0 * delta)
+			rotation = rotate_toward(rotation, target_angle, 10 * delta)
 			if can_shoot:
 				shoot()
 				
