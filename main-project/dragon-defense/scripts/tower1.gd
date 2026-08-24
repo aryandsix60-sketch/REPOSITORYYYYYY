@@ -1,11 +1,4 @@
 extends CharacterBody2D
-@export var pivot: Node2D
-@export var bullet_scene: PackedScene
-@export var right_bullet_spawn: Marker2D
-@export var left_bullet_spawn: Marker2D
-@export var tower_menu_scene: PackedScene
-@export var tower_menu_spawn: Marker2D
-@export var tower_menu_backup_spawn: Marker2D
 
 
 var left_can_shoot = true
@@ -24,23 +17,38 @@ var rate_level = 1
 
 var damage
 var range_level_radius = [180,200,250,320,380,420,450,480,540,600]
-var rate
+var rate_level_time = [0.7,0.65,0.6,0.55,0.5,0.46,0.42,0.38,0.35,0.32]
+
+@export var pivot: Node2D
+@export var bullet_scene: PackedScene
+@export var right_bullet_spawn: Marker2D
+@export var left_bullet_spawn: Marker2D
+@export var tower_menu_scene: PackedScene
+@export var tower_menu_spawn: Marker2D
+
+
+@onready var tower_range = $range/range1
+@onready var left_reload = $left_reload
+@onready var right_reload = $right_reload
+
+
 
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$range/range1.shape.radius = range_level_radius[range_level - 1]
-
+	tower_range.shape.radius = range_level_radius[range_level - 1]
+	left_reload.wait_time = rate_level_time[rate_level - 1]
+	right_reload.wait_time = rate_level_time[rate_level - 1]
 	rotation = deg_to_rad(-90)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-	damage = damage_level * 1
-	rate = 1/rate_level
+	damage = damage_level 
+
 	
 	
 	
@@ -127,3 +135,7 @@ func _open_tower_menu() -> void:
 	
 func range_level_increased() -> void:
 	$range/range1.shape.radius = range_level_radius[range_level - 1]
+	
+func rate_level_increased() -> void:
+	$left_reload.wait_time = rate_level_time[rate_level - 1]
+	$right_reload.wait_time = rate_level_time[rate_level - 1]

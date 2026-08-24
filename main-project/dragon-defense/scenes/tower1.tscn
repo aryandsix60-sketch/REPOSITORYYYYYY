@@ -17,7 +17,7 @@ radius = 200.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6asc"]
 radius = 58.21512
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "right_bullet_spawn", "left_bullet_spawn", "tower_menu_spawn", "tower_menu_backup_spawn")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "right_bullet_spawn", "left_bullet_spawn", "tower_menu_spawn")]
 script = ExtResource("1_dog3o")
 pivot = NodePath("Node2D")
 bullet_scene = ExtResource("2_p6asc")
@@ -25,7 +25,6 @@ right_bullet_spawn = NodePath("Node2D/right")
 left_bullet_spawn = NodePath("Node2D/left")
 tower_menu_scene = ExtResource("3_wv2mt")
 tower_menu_spawn = NodePath("tower_menu_spawn")
-tower_menu_backup_spawn = NodePath("tower_menu_backup_spawn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689425747]
 shape = SubResource("CircleShape2D_0ttma")
@@ -72,9 +71,6 @@ shape = SubResource("CircleShape2D_p6asc")
 [node name="tower_menu_spawn" type="Marker2D" parent="." unique_id=1681280934]
 position = Vector2(0, -185)
 
-[node name="tower_menu_backup_spawn" type="Marker2D" parent="." unique_id=1697312935]
-position = Vector2(0, 116)
-
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1370259307]
 modulate = Color(1, 1, 1, 0)
 offset_left = -68.0
@@ -82,6 +78,7 @@ offset_top = -67.0
 offset_right = 157.0
 offset_bottom = 158.0
 scale = Vector2(0.6, 0.6)
+focus_mode = 0
 texture_normal = ExtResource("6_bf72a")
 texture_pressed = ExtResource("6_bf72a")
 texture_hover = ExtResource("6_bf72a")

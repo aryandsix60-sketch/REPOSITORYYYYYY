@@ -76,7 +76,7 @@ func _process(_delta: float) -> void:
 	coin_label.text = "$"+str(global.coins)
 		
 		
-#starts the wave
+# Starts the wave
 func _start_wave() -> void:
 		if global.wave > max_wave or wave_in_progress:
 			return

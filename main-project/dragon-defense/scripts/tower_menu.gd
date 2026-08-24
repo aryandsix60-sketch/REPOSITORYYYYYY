@@ -78,6 +78,7 @@ func _on_rate_level_up_pressed() -> void:
 		tower.rate_level = rate_level
 		rate_level_display.text = str(rate_level)
 		global.coins -= rate_level_cost
+		tower.rate_level_increased()
 
 
 func _on_damage_level_up_mouse_entered() -> void:

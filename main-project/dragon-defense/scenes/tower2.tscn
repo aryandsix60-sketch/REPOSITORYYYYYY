@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bdqkfpyaive2t" path="res://scripts/tower2.gd" id="1_31gj7"]
 [ext_resource type="Texture2D" uid="uid://bkis5d63ywu6d" path="res://assets/towers/towerDefense_tile249.png" id="2_31gj7"]
 [ext_resource type="PackedScene" uid="uid://dbgwpwqabeel5" path="res://scenes/bullet.tscn" id="2_joa76"]
+[ext_resource type="PackedScene" uid="uid://byjlb87mji8po" path="res://scenes/tower_menu.tscn" id="3_joa76"]
 [ext_resource type="Texture2D" uid="uid://ce06pa3di25qm" path="res://assets/circles/images__1_-removebg-preview.png" id="4_gra0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ttma"]
@@ -14,12 +15,14 @@ radius = 349.00143
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6asc"]
 radius = 58.21512
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "left_bullet_spawn")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=599105486 node_paths=PackedStringArray("pivot", "bullet_spawn", "tower_menu_spawn")]
 input_pickable = true
 script = ExtResource("1_31gj7")
 pivot = NodePath("Node2D")
 bullet_scene = ExtResource("2_joa76")
-left_bullet_spawn = NodePath("Node2D/shoot")
+bullet_spawn = NodePath("Node2D/shoot")
+tower_menu_scene = ExtResource("3_joa76")
+tower_menu_spawn = NodePath("tower_menu_spawn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689425747]
 shape = SubResource("CircleShape2D_0ttma")
@@ -57,6 +60,22 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=296184564 groups=["no_tower_placement"]]
 shape = SubResource("CircleShape2D_p6asc")
 
+[node name="tower_menu_spawn" type="Marker2D" parent="." unique_id=1826403884]
+position = Vector2(0, -185)
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=745582031]
+modulate = Color(1, 1, 1, 0)
+offset_left = -68.0
+offset_top = -67.0
+offset_right = 157.0
+offset_bottom = 158.0
+scale = Vector2(0.6, 0.6)
+focus_mode = 0
+texture_normal = ExtResource("4_gra0m")
+texture_pressed = ExtResource("4_gra0m")
+texture_hover = ExtResource("4_gra0m")
+
 [connection signal="body_entered" from="range" to="." method="_enemy_in_range"]
 [connection signal="body_exited" from="range" to="." method="_enemy_out_range"]
 [connection signal="timeout" from="reload" to="." method="_reloaded"]
+[connection signal="pressed" from="TextureButton" to="." method="_open_tower_menu"]
