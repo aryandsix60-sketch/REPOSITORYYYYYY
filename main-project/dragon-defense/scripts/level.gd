@@ -37,7 +37,7 @@ var waves = {
 		"ogre_tank" : [0,1,1,2]
 		},
 	"3": {
-		"scorpion" : [5,4,4,4],
+		"scorpion" : [0,4,4,4],
 		"wizard": [1,1,1,1],
 		"ogre" : [3,3,3,3],
 		"robot" : [1,1,1,1],
@@ -58,6 +58,7 @@ var waves = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_start_wave()
 	#Lets the game know that we are in the game and out of the menu
 	global.in_game = true
 	#Starts the wave
@@ -66,10 +67,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("nigger"):
-		_start_wave()
+	print(wave_in_progress)
+	if Input.is_action_just_pressed("nigger") and not wave_in_progress:
+		pass
 	
-	
+	print(current_wave)
+	print(global.wave)
 	
 	
 # Identifies the coin label text so that the player will always know how many coins they have
@@ -86,7 +89,6 @@ func _start_wave() -> void:
 		var enemy_number = scene_enemies["scorpions"].size()
 		# Gets the current wave from the global script
 		current_wave = str(global.wave)
-		global.wave += 1
 		# Gives the wave var the sub list for the wave that is currently happening
 		var wave = waves[current_wave]
 		# Checks how many subwaves there are, and gives that value to the var, max_sub_wave
@@ -107,19 +109,19 @@ func _start_wave() -> void:
 					scene_enemies[enemy_name].append(enemy + str((enemy_number)))
 	# Creates the var to instantiate the enemy
 					var enemies = scenes[enemy].instantiate()
-	# Gives the enemy their number
+	# gives the enemy their number
 					enemies.enemy_no = enemy_number
 	# Gives the enemy it's position to spawn into
-					enemies.global_position = $spawner.global_position
+					enemies.progress = 0
 	# Spawns the enemy as a child of the Path2D, as their root nodes are PathFollow2D.
 					$Path2D.add_child(enemies)
 	# Wait before spawning more enemies.
 					await get_tree().create_timer(WAVE_TIMER).timeout
 	# Wait before spawning the next sub wave.
 				await get_tree().create_timer(WAVE_TIMER).timeout
-	
+
 		print(current_wave)
-		wave_in_progress = false
+
 
 
 

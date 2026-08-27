@@ -108,9 +108,6 @@ curve = SubResource("Curve2D_2q6dc")
 
 [node name="Timer" type="Timer" parent="." unique_id=1200194915]
 
-[node name="spawner" type="Marker2D" parent="." unique_id=429172031]
-position = Vector2(-59, 149)
-
 [node name="rotate" type="Area2D" parent="." unique_id=2128296267]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rotate" unique_id=618106207]
