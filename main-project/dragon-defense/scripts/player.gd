@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 	
 	
 	
-	if Input.is_action_pressed("ui_shoot") and can_shoot and not global.tower_placer_active:
+	if Input.is_action_pressed("ui_shoot") and can_shoot and not global.tower_placer_active and not global.tower_menu_active:
 		_shoot()
 	
 	

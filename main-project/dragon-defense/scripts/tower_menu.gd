@@ -9,7 +9,7 @@ var tower
 var damage_level
 var range_level
 var rate_level
-
+ 
 var damage_level_cost
 var range_level_cost
 var rate_level_cost
@@ -23,6 +23,8 @@ const MENU_Z_INDEX = 500
 
 
 func _ready() -> void:
+	print(global_position.y)
+	print(global_position.x)
 	z_index = MENU_Z_INDEX
 	global.coins = 10000
 	
@@ -32,6 +34,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+
 	damage_level_cost = int(10 * pow(1.5, damage_level))
 	range_level_cost = int(10 * pow(1.6, range_level))
 	rate_level_cost = int(10 * pow(1.7, rate_level))
@@ -60,9 +63,6 @@ func _process(_delta: float) -> void:
 		$Panel/rate/rate_level_up/rate_upgrade_cost.show()
 
 
-func _on_close_pressed() -> void:
-	global.tower_menu_active = false
-	queue_free()
 
 
 func _on_damage_level_up_pressed() -> void:
@@ -71,6 +71,7 @@ func _on_damage_level_up_pressed() -> void:
 		tower.damage_level = damage_level
 		damage_level_display.text = str(damage_level)
 		global.coins -= damage_level_cost
+
 
 
 func _on_range_level_up_pressed() -> void:
@@ -89,6 +90,7 @@ func _on_rate_level_up_pressed() -> void:
 		rate_level_display.text = str(rate_level)
 		global.coins -= rate_level_cost
 		tower.rate_level_increased()
+
 
 
 func _on_damage_level_up_mouse_entered() -> void:
@@ -125,3 +127,10 @@ func _on_rate_level_up_mouse_exited() -> void:
 	if not rate_level_cap:
 		$Panel/rate/rate_level_up/rate_level_up_image.show()
 		$Panel/rate/rate_level_up/rate_upgrade_cost.hide()
+		
+
+
+func _exit() -> void:
+
+	queue_free()
+	global.tower_menu_active = false

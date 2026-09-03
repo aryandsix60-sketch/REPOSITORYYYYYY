@@ -1,6 +1,6 @@
 extends PathFollow2D
 const SPEED: float = 300.0
-const MAX_PROGRESS: float = 2530
+const MAX_PROGRESS: float = 2500
 const SCALE_LEFT: int = 1
 const SCALE_RIGHT: int = -1
 const START_PROGRESS: int = 0

@@ -58,7 +58,7 @@ var waves = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_start_wave()
+
 	#Lets the game know that we are in the game and out of the menu
 	global.in_game = true
 	#Starts the wave
@@ -67,13 +67,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	print(wave_in_progress)
-	if Input.is_action_just_pressed("nigger") and not wave_in_progress:
-		pass
 	
-	print(current_wave)
-	print(global.wave)
 	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	if Input.is_action_just_pressed("start_wave") and not wave_in_progress:
+		_start_wave()
+	
+
 	
 # Identifies the coin label text so that the player will always know how many coins they have
 	coin_label.text = "$"+str(global.coins)
@@ -120,8 +128,9 @@ func _start_wave() -> void:
 	# Wait before spawning the next sub wave.
 				await get_tree().create_timer(WAVE_TIMER).timeout
 
-		print(current_wave)
 
+		wave_in_progress = false
+		global.wave += 1
 
 
 

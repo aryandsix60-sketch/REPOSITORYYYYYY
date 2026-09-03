@@ -1,6 +1,6 @@
 extends PathFollow2D
 const SPEED: float = 300.0
-const MAX_PROGRESS: float = 2530
+const MAX_PROGRESS: float = 2500
 const SCALE_LEFT: int = 1
 const SCALE_RIGHT: int = -1
 const START_PROGRESS: int = 0
@@ -27,7 +27,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	progress += SPEED * delta
-	if progress > MAX_PROGRESS:
+	if progress >= MAX_PROGRESS:
 		queue_free()
 	$pivot/AnimatedSprite2D.play("run")
 	
