@@ -27,6 +27,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress += SPEED * delta
 	if progress > MAX_PROGRESS:
+		global.health -= 1
 		queue_free()
 	$pivot/AnimatedSprite2D.play("run")
 	

@@ -26,7 +26,7 @@ func _ready() -> void:
 	print(global_position.y)
 	print(global_position.x)
 	z_index = MENU_Z_INDEX
-	global.coins = 10000
+
 	
 	damage_level_display.text = str(damage_level)
 	range_level_display.text = str(range_level)

@@ -128,6 +128,10 @@ func _open_tower_menu() -> void:
 		
 		add_child(tower_menu)
 		
+		
+		
+		
+		
 
 		tower_menu.top_level = true
 		tower_menu.global_position = tower_menu_spawn.global_position

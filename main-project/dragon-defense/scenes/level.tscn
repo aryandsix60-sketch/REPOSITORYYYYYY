@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://oy07qqh8hrww" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://b5fpnt04opaor" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://beuyes2y5e3a" path="res://assets/menu_assets/benbushnell-pixel-heart-2779422.png" id="3_w8frs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u52ul"]
 size = Vector2(1055, 98)
@@ -13,7 +14,7 @@ size = Vector2(92.125, 261.875)
 size = Vector2(17.5, 709)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0b4ue"]
-size = Vector2(1574.875, 58.5)
+size = Vector2(2118.4375, 58.5)
 
 [sub_resource type="Curve2D" id="Curve2D_2q6dc"]
 _data = {
@@ -24,9 +25,22 @@ point_count = 6
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
 size = Vector2(2.53125, 7.3125)
 
-[node name="Node2D" type="Node2D" unique_id=898089102 node_paths=PackedStringArray("coin_label")]
+[sub_resource type="LabelSettings" id="LabelSettings_mx8sn"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ppgk2"]
+font_size = 60
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" unique_id=898089102 node_paths=PackedStringArray("coin_label", "health_label", "health_sprite")]
 script = ExtResource("1_w7c3h")
 coin_label = NodePath("Coins")
+health_label = NodePath("Health")
+health_sprite = NodePath("HealthSprite")
 
 [node name="path_area" type="Area2D" parent="." unique_id=1559765250 groups=["no_tower_placement"]]
 
@@ -98,15 +112,13 @@ position = Vector2(1154, 323)
 shape = SubResource("RectangleShape2D_oi3di")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="border" unique_id=646257186]
-position = Vector2(519, 680)
+position = Vector2(247.21875, 680)
 shape = SubResource("RectangleShape2D_0b4ue")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1983818573]
 position = Vector2(-0.14273071, 5.090691)
 scale = Vector2(0.9981933, 0.92840093)
 curve = SubResource("Curve2D_2q6dc")
-
-[node name="Timer" type="Timer" parent="." unique_id=1200194915]
 
 [node name="rotate" type="Area2D" parent="." unique_id=2128296267]
 
@@ -118,13 +130,26 @@ shape = SubResource("RectangleShape2D_w8frs")
 position = Vector2(161, 330)
 
 [node name="Coins" type="Label" parent="." unique_id=712701949]
-offset_left = 5.0
-offset_top = 586.0
-offset_right = 91.0
-offset_bottom = 727.0
+offset_left = 14.0
+offset_top = 575.0
+offset_right = 100.0
+offset_bottom = 716.0
 theme_override_font_sizes/font_size = 50
 text = "$23
 "
+label_settings = SubResource("LabelSettings_mx8sn")
 
-[connection signal="timeout" from="Timer" to="." method="_start_wave"]
+[node name="HealthSprite" type="Sprite2D" parent="." unique_id=2057035301]
+position = Vector2(1027.0001, 608)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_w8frs")
+
+[node name="Health" type="Label" parent="." unique_id=609307903]
+offset_left = 1068.0
+offset_top = 566.0
+offset_right = 1137.0
+offset_bottom = 649.0
+text = "20"
+label_settings = SubResource("LabelSettings_ppgk2")
+
 [connection signal="body_entered" from="rotate" to="." method="_rotate"]

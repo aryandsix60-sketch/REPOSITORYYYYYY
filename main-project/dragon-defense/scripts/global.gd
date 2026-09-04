@@ -8,9 +8,10 @@ var tower_creation_possible = false
 var tower_placer_scene = preload("res://scenes/tower_checker.tscn")
 var tower_placer_active: bool = false
 var wave: int = 1
-var coins = 50
+var coins = 150
 var tower_scene_1 = preload("res://scenes/tower1.tscn")
 var tower_scene_2 = preload("res://scenes/tower2.tscn")
+var health = 20
 
 var tower_scenes = [
 	preload("res://scenes/tower1.tscn"),

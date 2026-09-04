@@ -2,7 +2,7 @@ extends Node2D
 
 const PLURALIZER: String = "s"
 const WAVE_TIMER: float = 0.5
-
+var ui_z_index: float = 100
 var max_wave: int = 4
 var wave_in_progress: bool = false
 var current_wave
@@ -23,9 +23,9 @@ var scenes = {
 }
 var waves = {
 	"1": {
-		"scorpion" : [5,0,3,1],
+		"scorpion" : [5,0,3,6],
 		"wizard": [0,1,0,0],
-		"ogre" : [1,0,1,0],
+		"ogre" : [0,0,0,0],
 		"robot" : [0,0,0,1],
 		"ogre_tank" : [0,0,0,1]
 		},
@@ -53,12 +53,16 @@ var waves = {
 }
 
 @export var coin_label: Label
+@export var health_label: Label
+@export var health_sprite: Sprite2D
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	health_sprite.z_index = ui_z_index
+	health_label.z_index = ui_z_index
+	coin_label.z_index = ui_z_index
 	#Lets the game know that we are in the game and out of the menu
 	global.in_game = true
 	#Starts the wave
@@ -67,6 +71,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	health_label.text = str(global.health)
 	
 	
 	

@@ -1,12 +1,12 @@
 extends PathFollow2D
-const SPEED: float = 300.0
+const SPEED: float = 200.0
 const MAX_PROGRESS: float = 2500
 const SCALE_LEFT: int = 1
 const SCALE_RIGHT: int = -1
 const START_PROGRESS: int = 0
 
 
-var health = 100
+var health = 50
 var enemy_no
 
 
@@ -27,6 +27,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress += SPEED * delta
 	if progress > MAX_PROGRESS:
+		global.health -= 1
 		queue_free()
 	$pivot/AnimatedSprite2D.play("run")
 	
@@ -45,3 +46,4 @@ func take_damage(damage):
 		
 		
 	
+"res://scenes/tower2.tscn"

@@ -6,7 +6,7 @@ const SCALE_RIGHT: int = -1
 const START_PROGRESS: int = 0
 
 
-var health = 2
+var health = 5
 var enemy_no
 
 
@@ -28,6 +28,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress += SPEED * delta
 	if progress >= MAX_PROGRESS:
+		global.health -= 1
 		queue_free()
 	$pivot/AnimatedSprite2D.play("run")
 	
