@@ -437,9 +437,9 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_u0anw")
 
 [node name="Top" type="Button" parent="Left" unique_id=607524934]
 layout_mode = 0
-offset_left = 3284.0
+offset_left = 2687.0
 offset_top = -3170.0
-offset_right = 8181.0
+offset_right = 7584.0
 offset_bottom = 3731.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_nmnwy")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_1o4kv")

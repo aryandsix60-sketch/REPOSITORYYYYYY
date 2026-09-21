@@ -7,8 +7,9 @@ font_size = 100
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Node2D" type="Node2D" unique_id=223294060]
+[node name="Node2D" type="Node2D" unique_id=223294060 node_paths=PackedStringArray("wave_text_label")]
 script = ExtResource("1_e21bh")
+wave_text_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="." unique_id=1907751496]
 offset_left = -257.0

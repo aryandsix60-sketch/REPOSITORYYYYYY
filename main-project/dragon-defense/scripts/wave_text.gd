@@ -1,15 +1,15 @@
 extends Node2D
 
 const NUMBER_TEXT = {
-	0 : "zero",
-	1 : "one",
-	2 : "two",
-	3 : "three",
-	4 : "four",
-	5 : "five"
+	0 : "ZERO",
+	1 : "ONE",
+	2 : "TWO",
+	3 : "THREE",
+	4 : "FOUR",
+	5 : "FIVE"
 }
 
-
+@export var wave_text_label : Label
 
 
 
@@ -26,7 +26,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	global_position.y -= delta * 200
+	wave_text_label.text = "WAVE " + NUMBER_TEXT[global.wave]
+	
+	global_position.y -= delta * 500
 	if global_position.y == -100:
 		queue_free()
 				

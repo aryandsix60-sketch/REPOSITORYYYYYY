@@ -55,6 +55,7 @@ var waves = {
 @export var coin_label: Label
 @export var health_label: Label
 @export var health_sprite: Sprite2D
+@export var wave_text_scene : PackedScene
 
 
 
@@ -97,6 +98,8 @@ func _start_wave() -> void:
 		if global.wave > max_wave or wave_in_progress:
 			return
 		wave_in_progress = true
+		var wave_text = wave_text_scene.instantiate()
+		add_sibling(wave_text)
 
 		# Gives enemy number its starting value
 		var enemy_number = scene_enemies["scorpions"].size()

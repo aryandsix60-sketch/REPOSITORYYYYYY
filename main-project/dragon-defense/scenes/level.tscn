@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://oy07qqh8hrww" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://b5fpnt04opaor" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://cx3o8cre8pbtx" path="res://scenes/wave_text.tscn" id="2_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://beuyes2y5e3a" path="res://assets/menu_assets/benbushnell-pixel-heart-2779422.png" id="3_w8frs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u52ul"]
@@ -41,6 +42,7 @@ script = ExtResource("1_w7c3h")
 coin_label = NodePath("Coins")
 health_label = NodePath("Health")
 health_sprite = NodePath("HealthSprite")
+wave_text_scene = ExtResource("2_mx8sn")
 
 [node name="path_area" type="Area2D" parent="." unique_id=1559765250 groups=["no_tower_placement"]]
 

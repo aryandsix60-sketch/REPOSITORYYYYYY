@@ -4,7 +4,7 @@ const MAX_PROGRESS: float = 2500
 const SCALE_LEFT: int = 1
 const SCALE_RIGHT: int = -1
 const START_PROGRESS: int = 0
-
+const OGRE_DAMAGE: int = 3
 
 var health = 50
 var enemy_no
@@ -27,7 +27,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress += SPEED * delta
 	if progress > MAX_PROGRESS:
-		global.health -= 1
+		global.health -= OGRE_DAMAGE
 		queue_free()
 	$pivot/AnimatedSprite2D.play("run")
 	
@@ -46,4 +46,3 @@ func take_damage(damage):
 		
 		
 	
-"res://scenes/tower2.tscn"
