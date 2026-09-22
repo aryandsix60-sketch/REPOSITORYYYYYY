@@ -3,10 +3,12 @@ var blocked_areas = 0
 var place_ready = false
 var tower_choice = 0
 var tower_chosen = 0
-
+var towers_placed = 0
+var coin_cost = 10
 
 const MAX_TOWER_CHOICE : int  = 1
 const MIN_TOWER_CHOICE : int  = 0
+const COIN_MULTI: int = 2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$tower_shadow.frame = 1
@@ -43,9 +45,10 @@ func _process(_delta: float) -> void:
 	#TOWER PLACEMENT
 	if place_ready:
 		if Input.is_action_just_pressed("place_tower") and global.tower_creation_possible \
-		 and global.tower_placer_active and global.coins > 0:
+		 and global.tower_placer_active and global.coins > coin_cost:
 
-			global.coins -= 10
+			global.coins -= coin_cost
+			coin_cost = coin_cost*COIN_MULTI
 			global.tower_creation_possible = false
 			global.tower_placer_active = false
 			

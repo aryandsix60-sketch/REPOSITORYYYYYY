@@ -9,7 +9,7 @@ var possible_target
 var target_enemy_no = 1000
 var targetable_enemies = {}
 var body_detected
-var level = 1
+
 
 var damage_level = 1
 var range_level = 1
@@ -25,6 +25,7 @@ var rate_level_time = [0.7,0.65,0.6,0.55,0.5,0.46,0.42,0.38,0.35,0.32]
 @export var left_bullet_spawn: Marker2D
 @export var tower_menu_scene: PackedScene
 @export var tower_menu_spawn: Marker2D
+@export var tower_menu_backup_spawn: Marker2D
 
 
 @onready var tower_range = $range/range1
@@ -51,10 +52,10 @@ func _process(delta: float) -> void:
 
 	
 	
-	
 
 	tower_menu_spawn.global_position = global_position + Vector2(0,-300)
-	
+	tower_menu_backup_spawn.global_position = global_position + Vector2(0,50) 
+
 	target_enemy_no = 1000
 	for enemy_number in targetable_enemies:
 		if enemy_number < target_enemy_no:
@@ -87,22 +88,22 @@ func _enemy_out_range(body: Node2D) -> void:
 
 	
 func right_shoot() -> void:
-		var bullet = bullet_scene.instantiate()
-		bullet.damage = damage
-		bullet.global_position = right_bullet_spawn.global_position
-		bullet.rotation = rotation
-		add_sibling(bullet)
-		right_can_shoot = false
-		$right_reload.start()
+	var bullet = bullet_scene.instantiate()
+	bullet.damage = damage
+	bullet.global_position = right_bullet_spawn.global_position
+	bullet.rotation = rotation
+	add_sibling(bullet)
+	right_can_shoot = false
+	$right_reload.start()
 		
 func left_shoot() -> void:
-		var bullet = bullet_scene.instantiate()
-		bullet.damage = damage
-		bullet.global_position = left_bullet_spawn.global_position
-		bullet.rotation = rotation
-		add_sibling(bullet)
-		left_can_shoot = false
-		$left_reload.start()
+	var bullet = bullet_scene.instantiate()
+	bullet.damage = damage
+	bullet.global_position = left_bullet_spawn.global_position
+	bullet.rotation = rotation
+	add_sibling(bullet)
+	left_can_shoot = false
+	$left_reload.start()
 		
 
 
@@ -127,14 +128,12 @@ func _open_tower_menu() -> void:
 		tower_menu.tower = self
 		
 		add_child(tower_menu)
-		
-		
-		
-		
-		
-
 		tower_menu.top_level = true
 		tower_menu.global_position = tower_menu_spawn.global_position
+		print(tower_menu.global_position.y)
+		if tower_menu.global_position.y < 0:
+			tower_menu.global_position = tower_menu_backup_spawn.global_position
+	
 		global.tower_menu_active = true
 	
 func range_level_increased() -> void:

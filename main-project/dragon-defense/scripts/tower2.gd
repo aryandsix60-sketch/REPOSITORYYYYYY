@@ -13,7 +13,7 @@ var possible_target
 var target_enemy_no = 1000
 var targetable_enemies = {}
 var body_detected
-var level = 1
+
 
 var damage_level = 1
 var range_level = 1
@@ -43,22 +43,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	damage = damage_level
+	tower_menu_spawn.global_position = global_position + Vector2(0,-300)
 	
-		damage = damage_level
-		tower_menu_spawn.global_position = global_position + Vector2(0,-300)
-		
-		target_enemy_no = 1000
-		for enemy_number in targetable_enemies:
-			if enemy_number < target_enemy_no:
-				target_enemy_no = enemy_number
-		if target_enemy_no != 1000:
-			target_enemy = targetable_enemies[target_enemy_no]
-			var target_angle = global_position.angle_to_point(target_enemy.global_position)
-			rotation = rotate_toward(rotation, target_angle, 10 * delta)
-			if can_shoot:
-				shoot()
-				
-		
+	target_enemy_no = 1000
+	for enemy_number in targetable_enemies:
+		if enemy_number < target_enemy_no:
+			target_enemy_no = enemy_number
+	if target_enemy_no != 1000:
+		target_enemy = targetable_enemies[target_enemy_no]
+		var target_angle = global_position.angle_to_point(target_enemy.global_position)
+		rotation = rotate_toward(rotation, target_angle, 10 * delta)
+		if can_shoot:
+			shoot()
+			
+	
 		
 
 

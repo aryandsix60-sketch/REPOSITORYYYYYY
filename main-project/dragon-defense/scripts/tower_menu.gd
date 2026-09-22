@@ -23,8 +23,8 @@ const MENU_Z_INDEX = 500
 
 
 func _ready() -> void:
-	print(global_position.y)
-	print(global_position.x)
+
+
 	z_index = MENU_Z_INDEX
 
 	

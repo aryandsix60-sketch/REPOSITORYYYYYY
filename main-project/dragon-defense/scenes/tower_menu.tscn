@@ -30,10 +30,8 @@ corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1iuhh"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn7l8"]
 bg_color = Color(0.8862745, 0.7764706, 0.59607846, 1)
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_be2pn"]
 bg_color = Color(0.7764706, 0.6784314, 0.5764706, 1)
@@ -56,6 +54,11 @@ bg_color = Color(0.5521226, 0.4442323, 0.25937024, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_1o4kv"]
 font_size = 15
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1iuhh"]
+bg_color = Color(0.8862745, 0.7764706, 0.59607846, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_rdtqq"]
 font_size = 15
@@ -147,7 +150,7 @@ offset_top = 44.0
 offset_right = 167.0
 offset_bottom = 108.0
 theme = SubResource("Theme_nmnwy")
-theme_override_styles/panel = SubResource("StyleBoxFlat_1iuhh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sn7l8")
 
 [node name="damage_text" type="Label" parent="Panel/damage" unique_id=503669567]
 modulate = Color(1, 1, 1, 0.9019608)
