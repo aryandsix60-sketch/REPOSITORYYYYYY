@@ -1,16 +1,16 @@
 extends Area2D
 var speed: float = 1000.0
-var damage
+var damage: int = 0
 const BULLET_Z_INDEX: int = 15
- 
 
 
- 
+
+
 
 
 func _process(delta: float) -> void:
 # Moves the bullet a constant speed so that it doesn't slow until collision
-	move_local_x(speed*delta)	
+	move_local_x(speed*delta)
 # Ensure the button remains in front of the other elements
 	z_index = BULLET_Z_INDEX
 

@@ -6,8 +6,8 @@ const SCALE_RIGHT: int = -1
 const START_PROGRESS: int = 0
 
 
-var health = 2
-var enemy_no
+var health: int = 150
+var enemy_no: int = 0
 
 
 
@@ -21,7 +21,7 @@ func _ready() -> void:
 	progress_ratio = START_PROGRESS
 	$pivot.scale.x = SCALE_LEFT
 
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,18 +31,16 @@ func _process(delta: float) -> void:
 		global.health -= 1
 		queue_free()
 	$pivot/AnimatedSprite2D.play("run")
-	
-		
+
+
 func rotate_enemy() -> void:
 	$pivot.scale.x = SCALE_RIGHT
-	
-func take_damage(damage):
+
+func take_damage(damage : int) -> void:
 	if health > 0:
 		health -= damage
 		health_ui.value = health
-		
+
 	if health < 1:
 		global.coins += 10
 		queue_free()
-		
-	

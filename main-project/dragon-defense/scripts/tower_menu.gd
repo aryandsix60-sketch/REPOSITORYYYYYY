@@ -4,63 +4,69 @@ extends Control
 @export var range_level_display : Button
 @export var rate_level_display : Button
 
-var tower
+var tower : CharacterBody2D
+var damage_level: int
+var range_level: int
+var rate_level: int
+var damage_level_cost: int
+var range_level_cost: int
+var rate_level_cost: int
+var damage_level_cap: bool = false
+var range_level_cap: bool = false
+var rate_level_cap: bool = false
+var damage_power: float = 1.5
+var range_power: float = 1.6
+var rate_power: float = 1.7
 
-var damage_level
-var range_level
-var rate_level
- 
-var damage_level_cost
-var range_level_cost
-var rate_level_cost
+const MENU_Z_INDEX: int = 500
+const DOLLAR_SIGN_ADDER: String = "$"
+const COST_MULTIPLIER: float = 10
+const MAX_TOWER_LEVEL: int = 10
 
+@onready var damage_cost_label: Label = $Panel/damage/damage_level_up/damage_upgrade_cost
+@onready var range_cost_label: Label = $Panel/range/range_level_up/range_upgrade_cost
+@onready var rate_cost_label: Label = $Panel/rate/rate_level_up/rate_upgrade_cost
+@onready var damage_image: Panel = $Panel/damage/damage_level_up/damage_level_up_image
+@onready var range_image: Panel = $Panel/range/range_level_up/range_level_up_image
+@onready var rate_image: Panel = $Panel/rate/rate_level_up/rate_level_up_image
 
-var damage_level_cap = false
-var range_level_cap = false
-var rate_level_cap = false
- 
-const MENU_Z_INDEX = 500
 
 
 func _ready() -> void:
-
-
 	z_index = MENU_Z_INDEX
 
-	
 	damage_level_display.text = str(damage_level)
 	range_level_display.text = str(range_level)
 	rate_level_display.text = str(rate_level)
 
 
 func _process(_delta: float) -> void:
+	damage_level_cost = int(COST_MULTIPLIER * pow(damage_power, damage_level))
+	range_level_cost = int(COST_MULTIPLIER * pow(range_power, range_level))
+	rate_level_cost = int(COST_MULTIPLIER * pow(rate_power, rate_level))
 
-	damage_level_cost = int(10 * pow(1.5, damage_level))
-	range_level_cost = int(10 * pow(1.6, range_level))
-	rate_level_cost = int(10 * pow(1.7, rate_level))
-	
-	$Panel/damage/damage_level_up/damage_upgrade_cost.text = "$" + str(int(damage_level_cost))
-	$Panel/range/range_level_up/range_upgrade_cost.text = "$" + str(int(range_level_cost))
-	$Panel/rate/rate_level_up/rate_upgrade_cost.text = "$" + str(int(rate_level_cost))
-	
-	if damage_level == 10:
+	damage_cost_label.text = DOLLAR_SIGN_ADDER + str(int(damage_level_cost))
+	range_cost_label.text = DOLLAR_SIGN_ADDER + str(int(range_level_cost))
+	rate_cost_label.text = DOLLAR_SIGN_ADDER + str(int(rate_level_cost))
+
+	if damage_level == MAX_TOWER_LEVEL:
 		damage_level_cap = true
-		$Panel/damage/damage_level_up/damage_upgrade_cost.show()
-		$Panel/damage/damage_level_up/damage_upgrade_cost.text = "MAX"
-		$Panel/damage/damage_level_up/damage_level_up_image.hide()
-	
-	if range_level == 10:
+		damage_cost_label.show()
+		damage_cost_label.text = "MAX"
+		damage_image.hide()
+
+	if range_level == MAX_TOWER_LEVEL:
 		range_level_cap = true
-		$Panel/range/range_level_up/range_upgrade_cost.text = " MAX"
-		$Panel/range/range_level_up/range_level_up_image.hide()
-		$Panel/range/range_level_up/range_upgrade_cost.show()	
-		
-		
-	if rate_level == 10:
+		range_cost_label.text = " MAX"
+		range_image.hide()
+		range_cost_label.show()
+
+
+	if rate_level == MAX_TOWER_LEVEL:
 		rate_level_cap = true
-		$Panel/rate/rate_level_up/rate_upgrade_cost.text = " MAX"
-		$Panel/rate/rate_level_up/rate_level_up_image.hide()
-		$Panel/rate/rate_level_up/rate_upgrade_cost.show()
+		rate_cost_label.text = " MAX"
+		rate_image.hide()
+		rate_cost_label.show()
 
 
 
@@ -95,39 +101,39 @@ func _on_rate_level_up_pressed() -> void:
 
 func _on_damage_level_up_mouse_entered() -> void:
 	if not damage_level_cap:
-		$Panel/damage/damage_level_up/damage_level_up_image.hide()
-		$Panel/damage/damage_level_up/damage_upgrade_cost.show()
+		damage_image.hide()
+		damage_cost_label.show()
 
 
 func _on_damage_level_up_mouse_exited() -> void:
 	if not damage_level_cap:
-		$Panel/damage/damage_level_up/damage_level_up_image.show()
-		$Panel/damage/damage_level_up/damage_upgrade_cost.hide()
+		damage_image.show()
+		damage_cost_label.hide()
 
 
 func _on_range_level_up_mouse_entered() -> void:
 	if not range_level_cap:
-		$Panel/range/range_level_up/range_level_up_image.hide()
-		$Panel/range/range_level_up/range_upgrade_cost.show()
+		range_image.hide()
+		range_cost_label.show()
 
 
 func _on_range_level_up_mouse_exited() -> void:
 	if not range_level_cap:
-		$Panel/range/range_level_up/range_level_up_image.show()
-		$Panel/range/range_level_up/range_upgrade_cost.hide()
+		range_image.show()
+		range_cost_label.hide()
 
 
 func _on_rate_level_up_mouse_entered() -> void:
 	if not rate_level_cap:
-		$Panel/rate/rate_level_up/rate_level_up_image.hide()
-		$Panel/rate/rate_level_up/rate_upgrade_cost.show()
+		rate_image.hide()
+		rate_cost_label.show()
 
 
 func _on_rate_level_up_mouse_exited() -> void:
 	if not rate_level_cap:
-		$Panel/rate/rate_level_up/rate_level_up_image.show()
-		$Panel/rate/rate_level_up/rate_upgrade_cost.hide()
-		
+		rate_image.show()
+		rate_cost_label.hide()
+
 
 
 func _exit() -> void:

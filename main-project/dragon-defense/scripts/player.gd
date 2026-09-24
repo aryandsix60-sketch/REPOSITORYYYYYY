@@ -1,13 +1,12 @@
 extends CharacterBody2D
 
-var health = int(3)
+var health: int = 3
 var can_shoot: bool = true
-var score = int(0)
+var score: int = 3
 var direction: Vector2 = Vector2(0.0, 0.0)
-var speed = float(300)
-var level 
+var speed: float = 300
 var multi_shoot: bool = false
-var damage = float(1.0)
+var damage: float = 1
 
 
 
@@ -17,7 +16,7 @@ var damage = float(1.0)
 @export var flash_scene: PackedScene
 @export var flash_spawn: Marker2D
 @export var timer: Timer
-@export var player = CharacterBody2D
+@export var player: CharacterBody2D
 @export var multi_time: Timer
 @export var bullet_scene: PackedScene
 
@@ -33,68 +32,56 @@ func _process(delta: float) -> void:
 	$BackRotor.global_position = $HelicopterBody/back_rotor_pos.global_position
 	$MainRotor.rotation += (20*delta)
 	$BackRotor.rotation += (20*delta)
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 	direction.x = Input.get_axis("move_left", "move_right")
 	direction.y = Input.get_axis("move_up", "move_down")
-	
+
 
 	velocity = speed * direction.normalized()
 
 	pivot.look_at(get_global_mouse_position())
 	$HelicopterBody.look_at(get_global_mouse_position())
-	
-	
-	
+
+
+
 	if Input.is_action_pressed("ui_shoot") and can_shoot and not\
 	global.tower_placer_active and not global.tower_menu_active:
 		_shoot()
-	
-	
-	
-	
+
+
+
+
 	move_and_slide()
-		
+
 
 
 
 
 
 func _shoot() -> void:
-	var angles
-	if multi_shoot == true:
-		angles = [0, -20, 20, -40, 40]		
-	elif multi_shoot == false: 
-		angles = [0]
-	for angle in angles:
-		var bullet = bullet_scene.instantiate()
-		bullet.damage = damage
-		bullet.rotation = pivot.rotation + deg_to_rad(angle)
-		bullet.global_position = bullet_spawn.global_position
-		add_sibling(bullet)
-	
-	
-
-	
-	
-	
+	var bullet: Area2D = bullet_scene.instantiate()
+	bullet.damage = damage
+	bullet.rotation = pivot.rotation
+	bullet.global_position = bullet_spawn.global_position
+	add_sibling(bullet)
 	can_shoot = false
 	timer.start()
-	
+
 
 
 func _reload_time() -> void:
 	can_shoot = true
-	
 
-	
-	
+
+
+
 func multishot_enable() -> void:
 	multi_time.start()
 	multi_shoot = true

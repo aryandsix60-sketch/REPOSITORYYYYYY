@@ -38,14 +38,14 @@ func _ready() -> void:
 	tower_range.shape.radius = range_level_radius[range_level - 1]
 	reload.wait_time = rate_level_time[rate_level - 1]
 	await get_tree().create_timer(0.5).timeout
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	damage = damage_level
 	tower_menu_spawn.global_position = global_position + Vector2(0,-300)
-	
+
 	target_enemy_no = 1000
 	for enemy_number in targetable_enemies:
 		if enemy_number < target_enemy_no:
@@ -56,17 +56,17 @@ func _process(delta: float) -> void:
 		rotation = rotate_toward(rotation, target_angle, 10 * delta)
 		if can_shoot:
 			shoot()
-			
-	
-		
+
+
+
 
 
 func _enemy_in_range(body: Node2D) -> void:
 	possible_target = body.get_parent()
 	if possible_target.is_in_group("enemy"):
 		targetable_enemies[possible_target.enemy_no] = possible_target
-		
-			
+
+
 
 func _enemy_out_range(body: Node2D) -> void:
 	body_detected = body.get_parent()
@@ -74,9 +74,9 @@ func _enemy_out_range(body: Node2D) -> void:
 		targetable_enemies.erase(body_detected.enemy_no)
 
 
-	
 
-		
+
+
 func shoot() -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.damage = damage
@@ -85,7 +85,7 @@ func shoot() -> void:
 	add_sibling(bullet)
 	can_shoot = false
 	$reload.start()
-		
+
 
 func _open_tower_menu() -> void:
 	if not global.tower_menu_active:
@@ -94,9 +94,9 @@ func _open_tower_menu() -> void:
 		tower_menu.range_level = range_level
 		tower_menu.rate_level = rate_level
 		tower_menu.tower = self
-		
+
 		add_child(tower_menu)
-		
+
 
 		tower_menu.top_level = true
 		tower_menu.global_position = tower_menu_spawn.global_position
@@ -105,7 +105,7 @@ func _open_tower_menu() -> void:
 
 func range_level_increased() -> void:
 	$range/range1.shape.radius = range_level_radius[range_level - 1]
-	
+
 func rate_level_increased() -> void:
 	$reload.wait_time = rate_level_time[rate_level - 1]
 

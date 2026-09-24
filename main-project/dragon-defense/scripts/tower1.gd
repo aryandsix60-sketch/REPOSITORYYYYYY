@@ -1,23 +1,24 @@
 extends CharacterBody2D
 
+const NO_TARGET: int = 1000
+const ORIGINAL_ROTATION: float = deg_to_rad(-90)
+const TOWER_MENU_OFFSET_X: int = 0
+const TOWER_MENU_OFFSET_Y: int = -300
+const BACKUP_TOWER_MENU_Y: int = 50
 
-var left_can_shoot = true
-var right_can_shoot = true
-var target_enemy
-
-var possible_target
-var target_enemy_no = 1000
+var left_can_shoot: bool = true
+var right_can_shoot: bool = true
+var target_enemy: Path2D
+var possible_target: Path2D
+var target_enemy_no: int = NO_TARGET
 var targetable_enemies = {}
-var body_detected
-
-
-var damage_level = 1
-var range_level = 1
-var rate_level = 1
-
-var damage
-var range_level_radius = [180,200,250,320,380,420,450,480,540,600]
-var rate_level_time = [0.7,0.65,0.6,0.55,0.5,0.46,0.42,0.38,0.35,0.32]
+var body_detected: Node2D
+var damage_level: int = 1
+var range_level: int = 1
+var rate_level: int = 1
+var damage: int
+var range_level_radius: Array = [180,200,250,320,380,420,450,480,540,600]
+var rate_level_time: Array = [0.7,0.65,0.6,0.55,0.5,0.46,0.42,0.38,0.35,0.32]
 
 @export var pivot: Node2D
 @export var bullet_scene: PackedScene
@@ -26,7 +27,6 @@ var rate_level_time = [0.7,0.65,0.6,0.55,0.5,0.46,0.42,0.38,0.35,0.32]
 @export var tower_menu_scene: PackedScene
 @export var tower_menu_spawn: Marker2D
 @export var tower_menu_backup_spawn: Marker2D
-
 
 @onready var tower_range = $range/range1
 @onready var left_reload = $left_reload
@@ -42,19 +42,17 @@ func _ready() -> void:
 	tower_range.shape.radius = range_level_radius[range_level - 1]
 	left_reload.wait_time = rate_level_time[rate_level - 1]
 	right_reload.wait_time = rate_level_time[rate_level - 1]
-	rotation = deg_to_rad(-90)
+	rotation = ORIGINAL_ROTATION
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	damage = damage_level
 
-	damage = damage_level 
-
-	
-	
-
-	tower_menu_spawn.global_position = global_position + Vector2(0,-300)
-	tower_menu_backup_spawn.global_position = global_position + Vector2(0,50) 
+	tower_menu_spawn.global_position = (global_position +
+			Vector2(TOWER_MENU_OFFSET_X,TOWER_MENU_OFFSET_Y))
+	tower_menu_backup_spawn.global_position = (global_position +
+			Vector2(TOWER_MENU_OFFSET_X,BACKUP_TOWER_MENU_Y))
 
 	target_enemy_no = 1000
 	for enemy_number in targetable_enemies:
@@ -68,17 +66,17 @@ func _process(delta: float) -> void:
 			right_shoot()
 		if left_can_shoot:
 			left_shoot()
-				
-		
-		
+
+
+
 
 
 func _enemy_in_range(body: Node2D) -> void:
 	possible_target = body.get_parent()
 	if possible_target.is_in_group("enemy"):
 		targetable_enemies[possible_target.enemy_no] = possible_target
-		
-			
+
+
 
 func _enemy_out_range(body: Node2D) -> void:
 	body_detected = body.get_parent()
@@ -86,7 +84,7 @@ func _enemy_out_range(body: Node2D) -> void:
 		targetable_enemies.erase(body_detected.enemy_no)
 
 
-	
+
 func right_shoot() -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.damage = damage
@@ -95,7 +93,7 @@ func right_shoot() -> void:
 	add_sibling(bullet)
 	right_can_shoot = false
 	$right_reload.start()
-		
+
 func left_shoot() -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.damage = damage
@@ -104,7 +102,7 @@ func left_shoot() -> void:
 	add_sibling(bullet)
 	left_can_shoot = false
 	$left_reload.start()
-		
+
 
 
 
@@ -126,19 +124,19 @@ func _open_tower_menu() -> void:
 		tower_menu.range_level = range_level
 		tower_menu.rate_level = rate_level
 		tower_menu.tower = self
-		
+
 		add_child(tower_menu)
 		tower_menu.top_level = true
 		tower_menu.global_position = tower_menu_spawn.global_position
 		print(tower_menu.global_position.y)
 		if tower_menu.global_position.y < 0:
 			tower_menu.global_position = tower_menu_backup_spawn.global_position
-	
+
 		global.tower_menu_active = true
-	
+
 func range_level_increased() -> void:
 	$range/range1.shape.radius = range_level_radius[range_level - 1]
-	
+
 func rate_level_increased() -> void:
 	$left_reload.wait_time = rate_level_time[rate_level - 1]
 	$right_reload.wait_time = rate_level_time[rate_level - 1]

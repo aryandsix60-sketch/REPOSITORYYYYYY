@@ -27,10 +27,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	wave_text_label.text = "WAVE " + NUMBER_TEXT[global.wave]
-	
+
 	global_position.y -= delta * 500
 	if global_position.y == -100:
 		queue_free()
-				
-	
-	

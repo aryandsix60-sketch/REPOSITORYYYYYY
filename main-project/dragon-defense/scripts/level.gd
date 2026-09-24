@@ -2,26 +2,27 @@ extends Node2D
 
 const PLURALIZER: String = "s"
 const WAVE_TIMER: float = 0.5
-var ui_z_index: float = 100
+const UI_Z_INDEX: int = 100
+
 var max_wave: int = 4
 var wave_in_progress: bool = false
-var current_wave
+var current_wave: String = "0"
 
-var scene_enemies = {
+var scene_enemies: Dictionary = {
 	"scorpions" : [],
 	"wizards" : [],
 	"robots" : [],
 	"ogres" : [],
 	"ogre_tanks" : []
 }
-var scenes = {
+var scenes: Dictionary = {
 	"scorpion" : preload("res://scenes/scorpion.tscn"),
 	"wizard" : preload("res://scenes/wizard.tscn"),
 	"ogre" : preload("res://scenes/ogre.tscn"),
 	"robot" : preload("res://scenes/robot.tscn"),
 	"ogre_tank" : preload("res://scenes/ogre_tank.tscn")
 }
-var waves = {
+var waves: Dictionary = {
 	"1": {
 		"scorpion" : [5,0,3,6],
 		"wizard": [0,1,0,0],
@@ -61,9 +62,9 @@ var waves = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health_sprite.z_index = ui_z_index
-	health_label.z_index = ui_z_index
-	coin_label.z_index = ui_z_index
+	health_sprite.z_index = UI_Z_INDEX
+	health_label.z_index = UI_Z_INDEX
+	coin_label.z_index = UI_Z_INDEX
 	#Lets the game know that we are in the game and out of the menu
 	global.in_game = true
 	#Starts the wave
@@ -74,48 +75,56 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	health_label.text = str(global.health)
 
+
+
 	if Input.is_action_just_pressed("start_wave") and not wave_in_progress:
 		_start_wave()
-	
 
-	
+	if global.wave >= 5:
+		get_tree().change_scene_to_file("res://scenes/victory.tscn")
+
+	if global.health <= 0:
+		get_tree().change_scene_to_file("")
+
+
+
 # Identifies the coin label text so that the player will always know how many coins they have
 	coin_label.text = "$"+str(global.coins)
-		
-		
+
+
 # Starts the wave
 func _start_wave() -> void:
-	print(global.wave)
+
 	if global.wave > max_wave or wave_in_progress:
 		return
 	wave_in_progress = true
-	var wave_text = wave_text_scene.instantiate()
+	var wave_text: Node2D = wave_text_scene.instantiate()
 	add_sibling(wave_text)
 
 	# Gives enemy number its starting value
-	var enemy_number = scene_enemies["scorpions"].size()
+	var enemy_number: int = scene_enemies["scorpions"].size()
 	# Gets the current wave from the global script
 	current_wave = str(global.wave)
 	# Gives the wave var the sub list for the wave that is currently happening
-	var wave = waves[current_wave]
+	var wave: Dictionary = waves[current_wave]
 	# Checks how many subwaves there are, and gives that value to the var, max_sub_wave
-	var max_sub_wave = wave["scorpion"].size()
+	var max_sub_wave: int = wave["scorpion"].size()
 	# Iterates through each sub wave with the value needed for that sub wave.
-	for sub_wave in range(max_sub_wave):
+	for sub_wave : int in range(max_sub_wave):
 	# Iterates through every enemy in that wave
-		for enemy in wave:
+		for enemy : String in wave:
 		# Identifies the amount of each enemy is in this sub wave
-			var amount = wave[enemy][sub_wave]
-		# Iterates throguh each enemy 
+			var amount: int = wave[enemy][sub_wave]
+		# Iterates throguh each enemy
 			for i in range(amount):
-# Identifies the enemy name variable and adds an "s" at the end because it needs to match the list 
-				var enemy_name = str(enemy + PLURALIZER)
+# Identifies the enemy name variable and adds an "s" at the end because it needs to match the list
+				var enemy_name: String = str(enemy + PLURALIZER)
 # Add one to enemy number because enemy will be insantiated
 				enemy_number += 1
 # Adds the enemy name to the list as well as their number so each enemy can be tracked easily.
 				scene_enemies[enemy_name].append(enemy + str((enemy_number)))
 # Creates the var to instantiate the enemy
-				var enemies = scenes[enemy].instantiate()
+				var enemies: PathFollow2D = scenes[enemy].instantiate()
 # gives the enemy their number
 				enemies.enemy_no = enemy_number
 # Gives the enemy it's position to spawn into
